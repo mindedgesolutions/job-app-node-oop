@@ -5,14 +5,14 @@ import { candidateProfileController } from '@/candidate/controllers/candidate-pr
 import { checkPermission } from '@/globals/middlewares/check.permission.middleware';
 import { allowAccess } from '@/globals/middlewares/allow.access.middleware';
 import { validateSchema } from '@/globals/middlewares/validate.schema.middleware';
-import { candidateProfileCreateSchema } from '@/candidate/schemas/candidate-profile.schema';
+import { candidateProfileSchema } from '@/candidate/schemas/candidate-profile.schema';
 
 const candidateProfileRoute = express.Router();
 
 candidateProfileRoute.post(
   '/',
   verifyUser,
-  validateSchema(candidateProfileCreateSchema),
+  validateSchema(candidateProfileSchema),
   asyncWrapper(candidateProfileController.create)
 );
 candidateProfileRoute.get(
@@ -31,7 +31,7 @@ candidateProfileRoute.put(
   '/:id',
   verifyUser,
   checkPermission('candidateProfile', 'userId'),
-  validateSchema(candidateProfileCreateSchema),
+  validateSchema(candidateProfileSchema),
   asyncWrapper(candidateProfileController.update)
 );
 candidateProfileRoute.delete(

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export const candidateProfileCreateSchema = Joi.object({
+export const candidateProfileSchema = Joi.object({
   fullName: Joi.string().required().max(50).messages({
     'string.empty': 'Full name is required',
     'string.max': 'Full name must be at most 50 characters long',
