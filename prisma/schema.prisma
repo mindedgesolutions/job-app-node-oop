@@ -48,6 +48,7 @@ model CandidateLanguage {
   candidateProfileId   Int
   language             Language         @relation(fields: [languageName], references: [name])
   languageName         String
+  level                Level            @default(BASIC)
 
   @@unique([candidateProfileId, languageName])
 }
@@ -62,4 +63,10 @@ enum Gender {
   MALE
   FEMALE
   OTHER
+}
+
+enum Level{
+  BASIC
+  INTERMEDIATE
+  ADVANCED
 }
