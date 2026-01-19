@@ -1,6 +1,6 @@
 import { NotFoundException } from '@/globals/core/error.core';
 import { prisma } from '@/prisma';
-import { CandidateProfile } from 'generated/prisma';
+import { CandidateProfile, Gender } from 'generated/prisma';
 import { CandidateProfileDTO } from '@/candidate/interfaces/candidate-profile.interface';
 
 class CandidateProfileService {
@@ -38,7 +38,7 @@ class CandidateProfileService {
         data: {
           userId,
           fullName,
-          gender,
+          gender: gender as Gender,
           phone,
           cv,
           birthday: new Date(birthday),
@@ -68,7 +68,7 @@ class CandidateProfileService {
       where: { id },
       data: {
         fullName,
-        gender,
+        gender: gender as Gender,
         phone,
         cv,
         birthday: new Date(birthday),

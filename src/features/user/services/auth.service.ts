@@ -16,7 +16,7 @@ class AuthService {
 
     if (check) throw new BadRequestException(`Email already exists`);
 
-    const saltRounds = 10;
+    const saltRounds = Number(process.env.SALT_ROUNDS);
     const newPassword = await bcrypt.hash(password, saltRounds);
 
     return prisma.$transaction(async (tx) => {

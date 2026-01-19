@@ -14,31 +14,41 @@ datasource db {
 }
 
 model User {
-  id              Int     @id @default(autoincrement())
-  name            String?
-  email           String  @unique
-  password        String
-  role            Role    @default(CANDIDATE)
-  status          Boolean  @default(true)
-  cadidateProfile CandidateProfile?
+  id               Int      @id @default(autoincrement())
+  name             String?
+  email            String   @unique
+  password         String
+  role             Role     @default(CANDIDATE)
+  status           Boolean  @default(true)
+  candidateProfile CandidateProfile?
 }
 
 model CandidateProfile{
   id          Int     @id @default(autoincrement())
-  user        User @relation(fields: [userId], references: [id])
-  userId      Int @unique
+  user        User    @relation(fields: [userId], references: [id])
+  userId      Int     @unique
   fullName    String
-  gender      String
+  gender      Gender
   phone       String
   cv          String
   birthday    DateTime @db.Date
   address     String
-  openToWork  Boolean @default(false)
-  status      Boolean @default(true)
+  openToWork  Boolean  @default(false)
+  status      Boolean  @default(true)
+}
+
+model Language {
+  name       String    @id
 }
 
 enum Role {
   ADMIN
   RECRUITER
   CANDIDATE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }

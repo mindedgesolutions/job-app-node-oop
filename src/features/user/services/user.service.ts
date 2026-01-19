@@ -17,7 +17,7 @@ class UserService {
 
       if (isEmailExists) throw new BadRequestException('Email already exists');
 
-      const saltRounds = 10;
+      const saltRounds = Number(process.env.SALT_ROUNDS);
       const hashedPassword = await bcrypt.hash(password, saltRounds);
 
       const user = await tx.user.create({
