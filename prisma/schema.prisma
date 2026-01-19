@@ -36,6 +36,7 @@ model CandidateProfile{
   openToWork          Boolean  @default(false)
   status              Boolean  @default(true)
   candidateLanguages  CandidateLanguage[]
+  candidateEducations CandidateEducation[]
 }
 
 model Language {
@@ -51,6 +52,27 @@ model CandidateLanguage {
   level                Level            @default(BASIC)
 
   @@unique([candidateProfileId, languageName])
+}
+
+model Education{
+  id                  Int     @id @default(autoincrement())
+  name                String
+  map                 String
+  slug                String  @unique
+  candidateEducations CandidateEducation[]
+}
+
+model CandidateEducation{
+  candidateProfile    CandidateProfile @relation(fields: [candidateProfileId], references: [id])
+  candidateProfileId  Int
+  education           Education       @relation(fields: [educationId], references: [id])
+  educationId         Int
+  major               String
+  degree              String
+  yearStart           Int
+  yearEnd             Int
+
+  @@unique([candidateProfileId, educationId])
 }
 
 enum Role {

@@ -4,14 +4,16 @@ import { seedAdmin } from './seeds/admin.seed';
 import { seedRecruiter } from './seeds/recruiter.seed';
 import { seedCandidate } from './seeds/candidate.seed';
 import { seedLanguage } from './seeds/language.seed';
+import { seedEducation } from './seeds/education.seed';
 
 dotenv.config();
 
 async function main() {
-  await seedAdmin();
-  await seedRecruiter();
-  await seedCandidate();
-  await seedLanguage();
+  // await seedAdmin();
+  // await seedRecruiter();
+  // await seedCandidate();
+  // await seedLanguage();
+  await seedEducation();
 }
 
 main()
