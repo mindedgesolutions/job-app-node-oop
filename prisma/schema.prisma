@@ -14,31 +14,42 @@ datasource db {
 }
 
 model User {
-  id               Int      @id @default(autoincrement())
-  name             String?
-  email            String   @unique
-  password         String
-  role             Role     @default(CANDIDATE)
-  status           Boolean  @default(true)
-  candidateProfile CandidateProfile?
+  id                 Int      @id @default(autoincrement())
+  name               String?
+  email              String   @unique
+  password           String
+  role               Role     @default(CANDIDATE)
+  status             Boolean  @default(true)
+  candidateProfile   CandidateProfile?
 }
 
 model CandidateProfile{
-  id          Int     @id @default(autoincrement())
-  user        User    @relation(fields: [userId], references: [id])
-  userId      Int     @unique
-  fullName    String
-  gender      Gender
-  phone       String
-  cv          String
-  birthday    DateTime @db.Date
-  address     String
-  openToWork  Boolean  @default(false)
-  status      Boolean  @default(true)
+  id                  Int     @id @default(autoincrement())
+  user                User    @relation(fields: [userId], references: [id])
+  userId              Int     @unique
+  fullName            String
+  gender              Gender
+  phone               String
+  cv                  String
+  birthday            DateTime @db.Date
+  address             String
+  openToWork          Boolean  @default(false)
+  status              Boolean  @default(true)
+  candidateLanguages  CandidateLanguage[]
 }
 
 model Language {
-  name       String    @id
+  name                String    @id
+  candidateLanguages  CandidateLanguage[]
+}
+
+model CandidateLanguage {
+  candidateProfile     CandidateProfile @relation(fields: [candidateProfileId], references: [id])
+  candidateProfileId   Int
+  language             Language         @relation(fields: [languageName], references: [name])
+  languageName         String
+
+  @@unique([candidateProfileId, languageName])
 }
 
 enum Role {

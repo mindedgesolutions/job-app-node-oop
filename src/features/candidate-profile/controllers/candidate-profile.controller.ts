@@ -62,17 +62,25 @@ class CandidateProfileController {
 
   // ----------------------------------
 
-  public async toggleOpenToWork(req: Request, res: Response) {
-    const { id } = req.params;
-    const { openToWork } = req.body;
-    const data = await candidateProfileService.toggleOpenToWork(
-      openToWork,
-      Number(id)
-    );
+  public async toggleOpenToWork(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const { id } = req.params;
+      const { openToWork } = req.body;
+      const data = await candidateProfileService.toggleOpenToWork(
+        openToWork,
+        Number(id)
+      );
 
-    return res
-      .status(StatusCodes.OK)
-      .json({ message: 'Profile updated', data });
+      return res
+        .status(StatusCodes.OK)
+        .json({ message: 'Profile updated', data });
+    } catch (error) {
+      next(error);
+    }
   }
 }
 export const candidateProfileController: CandidateProfileController =
