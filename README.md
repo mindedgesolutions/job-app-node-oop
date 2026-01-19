@@ -10,5 +10,11 @@ pino + pino-pretty : for logging error / warning / data inside globals > logs > 
 
 ---
 
-npx prisma migrate dev
-npx prisma generate
+npx prisma migrate dev (to migrate)
+npx prisma generate (to make models available in queries)
+npx prisma db seed (for seeding DB)
+add: seed: 'ts-node prisma/seed.ts' in prisma.config.ts
+migrations: {
+path: 'prisma/migrations',
+seed: 'ts-node prisma/seed.ts',
+},
