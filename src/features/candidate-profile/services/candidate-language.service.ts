@@ -1,10 +1,11 @@
 import { prisma } from '@/prisma';
 import { candidateProfileService } from '@/candidate/services/candidate-profile.service';
 import { CandidateLanguage, CandidateProfile, Level } from 'generated/prisma';
+import { CandidateLanguageDTO } from '@/candidate/interfaces/candidate-language.interface';
 
 class CandidateLanguageService {
   public async create(
-    requestBody: any,
+    requestBody: CandidateLanguageDTO,
     currentUser: UserPayload
   ): Promise<CandidateLanguage> {
     const { languageName, level } = requestBody;
@@ -67,6 +68,27 @@ class CandidateLanguageService {
     });
 
     return candidateLanguage;
+  }
+
+  // ----------------------------------------------
+
+  public async delete(
+    languageName: string,
+    currentUser: UserPayload
+  ): Promise<void> {
+    const candidateProfile: CandidateProfile =
+      await candidateProfileService.readOneByUserId(Number(currentUser.id));
+
+    await prisma.candidateLanguage.delete({
+      where: {
+        candidateProfileId_languageName: {
+          candidateProfileId: candidateProfile.id,
+          languageName,
+        },
+      },
+    });
+
+    return;
   }
 }
 

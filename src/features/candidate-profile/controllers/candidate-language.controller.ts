@@ -46,6 +46,18 @@ class CandidateLanguageController {
       .status(StatusCodes.OK)
       .json({ message: 'Updated successfully', data });
   }
+
+  // ----------------------------------------------
+
+  public async delete(req: Request, res: Response) {
+    const { currentUser } = req;
+    const { languageName } = req.params;
+    console.log(languageName);
+
+    await candidateLanguageService.delete(languageName as string, currentUser);
+
+    return res.status(StatusCodes.OK).json({ message: 'Deleted successfully' });
+  }
 }
 export const candidateLanguageController: CandidateLanguageController =
   new CandidateLanguageController();
