@@ -59,6 +59,21 @@ class CandidateProfileController {
       .status(StatusCodes.OK)
       .json({ message: 'Profile deleted successfully' });
   }
+
+  // ----------------------------------
+
+  public async toggleOpenToWork(req: Request, res: Response) {
+    const { id } = req.params;
+    const { openToWork } = req.body;
+    const data = await candidateProfileService.toggleOpenToWork(
+      openToWork,
+      Number(id)
+    );
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ message: 'Profile updated', data });
+  }
 }
 export const candidateProfileController: CandidateProfileController =
   new CandidateProfileController();

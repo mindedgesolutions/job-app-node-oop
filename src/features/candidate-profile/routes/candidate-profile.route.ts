@@ -1,11 +1,14 @@
+import express from 'express';
 import asyncWrapper from '@/globals/core/async.wrapper.core';
 import { verifyUser } from '@/globals/middlewares/verify.user.middleware';
-import express from 'express';
 import { candidateProfileController } from '@/candidate/controllers/candidate-profile.controller';
 import { checkPermission } from '@/globals/middlewares/check.permission.middleware';
 import { allowAccess } from '@/globals/middlewares/allow.access.middleware';
 import { validateSchema } from '@/globals/middlewares/validate.schema.middleware';
-import { candidateProfileSchema } from '@/candidate/schemas/candidate-profile.schema';
+import {
+  candidateProfileOpenToWorkSchema,
+  candidateProfileSchema,
+} from '@/candidate/schemas/candidate-profile.schema';
 
 const candidateProfileRoute = express.Router();
 
@@ -39,6 +42,13 @@ candidateProfileRoute.delete(
   verifyUser,
   checkPermission('candidateProfile', 'userId'),
   asyncWrapper(candidateProfileController.delete)
+);
+candidateProfileRoute.put(
+  '/:id/toggle-open-to-work',
+  verifyUser,
+  checkPermission('candidateProfile', 'userId'),
+  validateSchema(candidateProfileOpenToWorkSchema),
+  asyncWrapper(candidateProfileController.toggleOpenToWork)
 );
 
 export default candidateProfileRoute;

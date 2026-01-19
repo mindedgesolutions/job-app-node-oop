@@ -21,3 +21,12 @@ export const candidateProfileSchema = Joi.object({
     'string.empty': 'Address is required',
   }),
 });
+
+// ----------------------------------
+
+export const candidateProfileOpenToWorkSchema = Joi.object({
+  openToWork: Joi.boolean().required().messages({
+    'any.required': 'Open to work status is required',
+    'boolean.base': 'Open to work must be a TRUE / FALSE value',
+  }),
+});
