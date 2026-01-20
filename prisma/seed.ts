@@ -9,10 +9,10 @@ import { seedEducation } from './seeds/education.seed';
 dotenv.config();
 
 async function main() {
-  // await seedAdmin();
-  // await seedRecruiter();
-  // await seedCandidate();
-  // await seedLanguage();
+  await seedAdmin();
+  await seedRecruiter();
+  await seedCandidate();
+  await seedLanguage();
   await seedEducation();
 }
 
