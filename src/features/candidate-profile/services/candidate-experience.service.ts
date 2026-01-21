@@ -1,9 +1,13 @@
 import { CandidateProfile } from 'generated/prisma';
 import { candidateProfileService } from '@/candidate/services/candidate-profile.service';
 import { prisma } from '@/prisma';
+import { CandidateExperienceDTO } from '@/candidate/interfaces/candidate-experience.interface';
 
 class CandidateExperienceService {
-  public async create(requestBody: any, currentUser: UserPayload) {
+  public async create(
+    requestBody: CandidateExperienceDTO,
+    currentUser: UserPayload,
+  ) {
     const {
       company,
       department,
@@ -56,7 +60,7 @@ class CandidateExperienceService {
 
   // -------------------------------
 
-  public async update(requestBody: any, expId: number) {
+  public async update(requestBody: CandidateExperienceDTO, expId: number) {
     const {
       company,
       department,
