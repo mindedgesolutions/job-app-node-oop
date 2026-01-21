@@ -1,8 +1,5 @@
 import { prisma } from '../../src/prisma';
-import { faker } from '@faker-js/faker';
-import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import { Role } from '../../generated/prisma';
 
 dotenv.config();
 

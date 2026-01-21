@@ -28,7 +28,8 @@
       "@/core/*": ["./src/globals/core/*"],
       "@/user/*": ["./src/features/user/*"],
       "@/job/*": ["./src/features/job/*"],
-      "@/candidate/*": ["./src/features/candidate-profile/*"]
+      "@/candidate/*": ["./src/features/candidate-profile/*"],
+      "@/company/*": ["./src/features/company/*"]
     }
   },
   "files": ["src/type.d.ts"],
