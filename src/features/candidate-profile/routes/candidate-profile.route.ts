@@ -16,39 +16,44 @@ candidateProfileRoute.post(
   '/',
   verifyUser,
   validateSchema(candidateProfileSchema),
-  asyncWrapper(candidateProfileController.create)
+  asyncWrapper(candidateProfileController.create),
 );
 candidateProfileRoute.get(
   '/',
   verifyUser,
   allowAccess('ADMIN', 'RECRUITER'),
-  asyncWrapper(candidateProfileController.readAll)
+  asyncWrapper(candidateProfileController.readAll),
+);
+candidateProfileRoute.get(
+  '/details',
+  verifyUser,
+  asyncWrapper(candidateProfileController.candidateAllDetails),
 );
 candidateProfileRoute.get(
   '/:id',
   verifyUser,
   checkPermission('candidateProfile', 'userId'),
-  asyncWrapper(candidateProfileController.readOne)
+  asyncWrapper(candidateProfileController.readOne),
 );
 candidateProfileRoute.put(
   '/:id',
   verifyUser,
   checkPermission('candidateProfile', 'userId'),
   validateSchema(candidateProfileSchema),
-  asyncWrapper(candidateProfileController.update)
+  asyncWrapper(candidateProfileController.update),
 );
 candidateProfileRoute.delete(
   '/:id',
   verifyUser,
   checkPermission('candidateProfile', 'userId'),
-  asyncWrapper(candidateProfileController.delete)
+  asyncWrapper(candidateProfileController.delete),
 );
 candidateProfileRoute.put(
   '/:id/toggle-open-to-work',
   verifyUser,
   checkPermission('candidateProfile', 'userId'),
   validateSchema(candidateProfileOpenToWorkSchema),
-  asyncWrapper(candidateProfileController.toggleOpenToWork)
+  asyncWrapper(candidateProfileController.toggleOpenToWork),
 );
 
 export default candidateProfileRoute;

@@ -41,7 +41,7 @@ class CandidateProfileService {
 
   public async create(
     requestBody: CandidateProfileDTO,
-    currentUser: UserPayload
+    currentUser: UserPayload,
   ): Promise<CandidateProfile> {
     const { fullName, gender, phone, cv, birthday, address } = requestBody;
     const userId = Number(currentUser.id);
@@ -67,7 +67,7 @@ class CandidateProfileService {
 
   public async update(
     requestBody: CandidateProfileDTO,
-    id: number
+    id: number,
   ): Promise<CandidateProfile> {
     const { fullName, gender, phone, cv, birthday, address } = requestBody;
 
@@ -112,7 +112,7 @@ class CandidateProfileService {
 
   public async toggleOpenToWork(
     openToWork: boolean,
-    id: number
+    id: number,
   ): Promise<void> {
     await this.readOne(id);
 
@@ -120,6 +120,25 @@ class CandidateProfileService {
       where: { id },
       data: { openToWork },
     });
+  }
+
+  // ----------------------------------
+
+  public async candidateAllDetails(currentUser: UserPayload) {
+    const data = await prisma.user.findUnique({
+      where: { id: Number(currentUser.id) },
+      include: {
+        candidateProfile: {
+          include: {
+            candidateEducations: true,
+            candidateLanguages: true,
+            candidateExperiences: true,
+          },
+        },
+      },
+    });
+
+    return data;
   }
 }
 export const candidateProfileService: CandidateProfileService =

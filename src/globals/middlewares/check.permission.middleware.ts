@@ -25,7 +25,7 @@ export function checkPermission(model: any, foreignKey: string) {
       Number(userId) !== Number(entity[foreignKey])
     ) {
       return next(
-        new ForbiddenException(`You don't have permission to access`)
+        new ForbiddenException(`You don't have permission to access`),
       );
     }
     return next();

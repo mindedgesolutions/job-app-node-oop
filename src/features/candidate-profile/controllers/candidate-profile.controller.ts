@@ -7,7 +7,7 @@ class CandidateProfileController {
     try {
       const data = await candidateProfileService.create(
         req.body,
-        req.currentUser
+        req.currentUser,
       );
 
       return res
@@ -65,14 +65,14 @@ class CandidateProfileController {
   public async toggleOpenToWork(
     req: Request,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ) {
     try {
       const { id } = req.params;
       const { openToWork } = req.body;
       const data = await candidateProfileService.toggleOpenToWork(
         openToWork,
-        Number(id)
+        Number(id),
       );
 
       return res
@@ -81,6 +81,16 @@ class CandidateProfileController {
     } catch (error) {
       next(error);
     }
+  }
+
+  // ----------------------------------
+
+  public async candidateAllDetails(req: Request, res: Response) {
+    const data = await candidateProfileService.candidateAllDetails(
+      req.currentUser,
+    );
+
+    return res.status(StatusCodes.OK).json({ data });
   }
 }
 export const candidateProfileController: CandidateProfileController =
