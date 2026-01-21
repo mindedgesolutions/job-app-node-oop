@@ -24,19 +24,20 @@ model User {
 }
 
 model CandidateProfile{
-  id                  Int     @id @default(autoincrement())
-  user                User    @relation(fields: [userId], references: [id])
-  userId              Int     @unique
-  fullName            String
-  gender              Gender
-  phone               String
-  cv                  String
-  birthday            DateTime @db.Date
-  address             String
-  openToWork          Boolean  @default(false)
-  status              Boolean  @default(true)
-  candidateLanguages  CandidateLanguage[]
-  candidateEducations CandidateEducation[]
+  id                   Int     @id @default(autoincrement())
+  user                 User    @relation(fields: [userId], references: [id])
+  userId               Int     @unique
+  fullName             String
+  gender               Gender
+  phone                String
+  cv                   String
+  birthday             DateTime @db.Date
+  address              String
+  openToWork           Boolean  @default(false)
+  status               Boolean  @default(true)
+  candidateLanguages   CandidateLanguage[]
+  candidateEducations  CandidateEducation[]
+  candidateExperiences CandidateExperience[]
 }
 
 model Language {
@@ -73,6 +74,18 @@ model CandidateEducation{
   yearEnd             Int
 
   @@unique([candidateProfileId, educationId])
+}
+
+model CandidateExperience {
+  id                  Int              @id @default(autoincrement())
+  candidateProfile    CandidateProfile @relation(fields: [candidateProfileId], references: [id])
+  candidateProfileId  Int
+  company             String
+  department          String
+  responsibilities    String
+  startDate           DateTime          @db.Date
+  endDate             DateTime?         @db.Date
+  currentlyWorking    Boolean           @default(false)
 }
 
 enum Role {
