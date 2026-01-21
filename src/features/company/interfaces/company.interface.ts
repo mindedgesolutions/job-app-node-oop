@@ -7,3 +7,9 @@ export type CompanyDTO = {
   websiteUrl: string;
   mapLink: string;
 };
+
+export type PaginationDTO = {
+  currentPage: number;
+  totalCount: number;
+  totalPage: number;
+};

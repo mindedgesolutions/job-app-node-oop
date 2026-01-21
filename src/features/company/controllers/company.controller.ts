@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { companyService } from '@/company/services/company.service';
 import { StatusCodes } from 'http-status-codes';
+import { skip } from 'generated/prisma/runtime/client';
 
 class CompanyController {
   public async create(req: Request, res: Response) {
@@ -12,9 +13,17 @@ class CompanyController {
   // --------------------------------
 
   public async readAll(req: Request, res: Response) {
-    const data = await companyService.readAll();
+    let { page = 1, limit = 5 } = req.query;
 
-    res.status(StatusCodes.OK).json({ data });
+    page = parseInt(page as string);
+    limit = parseInt(limit as string);
+
+    const { data, meta } = await companyService.readAllPagination({
+      page,
+      limit,
+    });
+
+    res.status(StatusCodes.OK).json({ data, meta });
   }
 
   // --------------------------------
