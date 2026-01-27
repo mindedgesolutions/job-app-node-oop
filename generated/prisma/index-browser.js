@@ -193,6 +193,12 @@ exports.Prisma.CompanyScalarFieldEnum = {
   mapLink: 'mapLink'
 };
 
+exports.Prisma.CompanyImageScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  imageUrl: 'imageUrl'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -233,7 +239,8 @@ exports.Prisma.ModelName = {
   Education: 'Education',
   CandidateEducation: 'CandidateEducation',
   CandidateExperience: 'CandidateExperience',
-  Company: 'Company'
+  Company: 'Company',
+  CompanyImage: 'CompanyImage'
 };
 
 /**

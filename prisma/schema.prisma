@@ -102,6 +102,14 @@ model Company {
   websiteUrl          String?
   isApproved          Boolean          @default(false)
   mapLink             String?
+  images             CompanyImage[]
+}
+
+model CompanyImage {
+  id          Int     @id @default(autoincrement())
+  company     Company @relation(fields: [companyId], references: [id])
+  companyId   Int
+  imageUrl    String
 }
 
 enum Role {
