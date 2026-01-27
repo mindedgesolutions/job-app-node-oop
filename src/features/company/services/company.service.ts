@@ -1,11 +1,11 @@
 import { prisma } from '@/prisma';
-import { Company } from 'generated/prisma';
+import { Company, Prisma } from 'generated/prisma';
 import {
   CompanyDTO,
   PaginationDTO,
 } from '@/company/interfaces/company.interface';
 import { UnauthorizedException } from '@/globals/core/error.core';
-import { pagination } from '@/globals/helpers/pagination.helper';
+import { getPaginationAndFilters } from '@/globals/helpers/pagination.helper';
 
 class CompanyService {
   public async getCompanyByUserId(
@@ -66,24 +66,20 @@ class CompanyService {
   public async readAllPagination({
     page,
     limit,
+    filter,
   }: {
     page: number;
     limit: number;
+    filter: string;
   }): Promise<{ data: Company[]; meta: PaginationDTO }> {
-    const skip = (page - 1) * limit;
-
-    const [data, total] = await Promise.all([
-      prisma.company.findMany({
-        where: { isApproved: true },
-        skip,
-        take: limit,
-      }),
-      prisma.company.count({
-        where: { isApproved: true },
-      }),
-    ]);
-
-    const meta = pagination(total, page, limit);
+    const { data, meta } = await getPaginationAndFilters({
+      page,
+      limit,
+      filter,
+      filterFields: ['name', 'description'],
+      baseWhere: { isApproved: true },
+      model: 'company',
+    });
 
     return { data, meta };
   }

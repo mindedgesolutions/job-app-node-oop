@@ -13,14 +13,15 @@ class CompanyController {
   // --------------------------------
 
   public async readAll(req: Request, res: Response) {
-    let { page = 1, limit = 5 } = req.query;
+    let { page = 1, limit = 8, f = '' } = req.query;
 
-    page = parseInt(page as string);
-    limit = parseInt(limit as string);
+    page = Math.max(Number(page) || 1, 1);
+    limit = Number(limit);
 
     const { data, meta } = await companyService.readAllPagination({
       page,
       limit,
+      filter: f as string,
     });
 
     res.status(StatusCodes.OK).json({ data, meta });
