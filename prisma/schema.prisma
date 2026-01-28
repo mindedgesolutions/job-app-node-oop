@@ -57,10 +57,10 @@ model CandidateLanguage {
 }
 
 model Education{
-  id                  Int     @id @default(autoincrement())
+  id                  Int              @id @default(autoincrement())
   name                String
   map                 String
-  slug                String  @unique
+  slug                String           @unique
   candidateEducations CandidateEducation[]
 }
 
@@ -107,24 +107,24 @@ model Company {
 }
 
 model CompanyImage {
-  id                  Int     @id @default(autoincrement())
-  company             Company @relation(fields: [companyId], references: [id])
+  id                  Int              @id @default(autoincrement())
+  company             Company          @relation(fields: [companyId], references: [id])
   companyId           Int
   imageUrl            String
 }
 
 model Industry{
-  id                  Int     @id @default(autoincrement())
+  id                  Int              @id @default(autoincrement())
   name                String
-  slug                String  @unique
+  slug                String           @unique
   description         String
   industries          CompanyIndustry[]
 }
 
 model CompanyIndustry{
-  company             Company   @relation(fields: [companyId], references: [id])
+  company             Company          @relation(fields: [companyId], references: [id])
   companyId           Int
-  industry            Industry  @relation(fields: [industryId], references: [id])
+  industry            Industry         @relation(fields: [industryId], references: [id])
   industryId          Int
 
   @@unique([companyId, industryId])

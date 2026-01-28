@@ -7,6 +7,7 @@ import companyImageRoute from '@/features/company/routes/company-image.route';
 import authRoute from '@/user/routes/auth.route';
 import userRoute from '@/user/routes/user.route';
 import { Application } from 'express';
+import companyIndustryRoute from '@/features/company/routes/company-industry.route';
 
 function appRoutes(app: Application) {
   app.use('/api/v1/auth', authRoute);
@@ -17,5 +18,6 @@ function appRoutes(app: Application) {
   app.use('/api/v1/candidate-experience', candidateExperienceRoute);
   app.use('/api/v1/companies', companyRoute);
   app.use('/api/v1/company-images', companyImageRoute);
+  app.use('/api/v1/company-industries', companyIndustryRoute);
 }
 export default appRoutes;

@@ -1,11 +1,12 @@
 import { prisma } from '@/prisma';
-import { Company, Prisma } from 'generated/prisma';
+import { Company } from 'generated/prisma';
 import {
   CompanyDTO,
   PaginationDTO,
 } from '@/company/interfaces/company.interface';
 import { UnauthorizedException } from '@/globals/core/error.core';
 import { getPaginationAndFilters } from '@/globals/helpers/pagination.helper';
+import fs from 'fs';
 
 class CompanyService {
   public async getCompanyByUserId(
@@ -169,6 +170,37 @@ class CompanyService {
         `You're not allowed to delete this company`,
       );
 
+    // Delete images ---
+    const checkImg = await prisma.companyImage.count({
+      where: { companyId },
+    });
+
+    if (checkImg > 0) {
+      const images = await prisma.companyImage.findMany({
+        where: { companyId },
+      });
+
+      images.forEach((img) => {
+        fs.unlinkSync(`./uploads/companies/${img.imageUrl}`);
+      });
+
+      await prisma.companyImage.deleteMany({
+        where: { companyId },
+      });
+    }
+
+    // Delete industries ---
+    const checkIndustry = await prisma.companyIndustry.count({
+      where: { companyId },
+    });
+
+    if (checkIndustry > 0) {
+      await prisma.companyIndustry.deleteMany({
+        where: { companyId },
+      });
+    }
+
+    // Delete company ---
     await prisma.company.delete({
       where: { id: companyId },
     });

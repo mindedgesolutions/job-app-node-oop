@@ -36,12 +36,6 @@ export async function getPaginationAndFilters({
 
   const total = await (prisma[model] as any).count({ where });
 
-  console.log({
-    rawFilter: filter,
-    normalizedFilter,
-    where,
-  });
-
   const totalPage = Math.max(Math.ceil(total / safeLimit), 1);
   const safePage = Math.min(Math.max(page, 1), totalPage);
   const safeSkip = (safePage - 1) * safeLimit;
