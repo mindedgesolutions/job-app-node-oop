@@ -1,6 +1,7 @@
 import { prisma } from '@/prisma';
 import { CompanyImage } from 'generated/prisma';
 import fs from 'fs';
+import { NotFoundException } from '@/globals/core/error.core';
 
 class CompanyImageService {
   public async add(companyId: number, files: Express.Multer.File[]) {
@@ -27,6 +28,38 @@ class CompanyImageService {
           fs.unlinkSync(`${file.path}`);
         }),
       );
+    }
+  }
+
+  // ----------------------------------
+
+  public async readAll(companyId: number) {
+    const data = await prisma.companyImage.findMany({
+      where: { companyId },
+    });
+
+    return data;
+  }
+
+  // ----------------------------------
+
+  public async delete(imageId: number) {
+    try {
+      const image = await prisma.companyImage.findFirst({
+        where: { id: imageId },
+      });
+
+      if (!image) throw new NotFoundException('Image not found');
+
+      fs.unlinkSync(`./uploads/companies/${image.imageUrl}`);
+
+      await prisma.companyImage.delete({
+        where: { id: imageId },
+      });
+
+      return;
+    } catch (error) {
+      console.log(error);
     }
   }
 }

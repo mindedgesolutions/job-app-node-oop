@@ -29,7 +29,8 @@
       "@/user/*": ["./src/features/user/*"],
       "@/job/*": ["./src/features/job/*"],
       "@/candidate/*": ["./src/features/candidate-profile/*"],
-      "@/company/*": ["./src/features/company/*"]
+      "@/company/*": ["./src/features/company/*"],
+      "@/uploads/*": ["./uploads/*"]
     }
   },
   "files": ["src/type.d.ts"],

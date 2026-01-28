@@ -14,5 +14,15 @@ companyImageRoute.post(
   uploadCompanyImage.array('images', 10),
   asyncWrapper(companyImageController.add),
 );
+companyImageRoute.get(
+  '/:companyId',
+  asyncWrapper(companyImageController.readAll),
+);
+companyImageRoute.delete(
+  '/:imageId',
+  verifyUser,
+  allowAccess('RECRUITER'),
+  asyncWrapper(companyImageController.delete),
+);
 
 export default companyImageRoute;
