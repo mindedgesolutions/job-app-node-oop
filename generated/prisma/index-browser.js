@@ -211,6 +211,13 @@ exports.Prisma.CompanyIndustryScalarFieldEnum = {
   industryId: 'industryId'
 };
 
+exports.Prisma.JobRoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -254,7 +261,8 @@ exports.Prisma.ModelName = {
   Company: 'Company',
   CompanyImage: 'CompanyImage',
   Industry: 'Industry',
-  CompanyIndustry: 'CompanyIndustry'
+  CompanyIndustry: 'CompanyIndustry',
+  JobRole: 'JobRole'
 };
 
 /**

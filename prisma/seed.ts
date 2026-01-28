@@ -7,6 +7,7 @@ import { seedLanguage } from './seeds/language.seed';
 import { seedEducation } from './seeds/education.seed';
 import { seedCompany } from './seeds/company.seed';
 import { seedIndustry } from './seeds/industry.seed';
+import { seedJobRole } from './seeds/job-role.seed';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ async function main() {
   await seedEducation();
   await seedCompany();
   await seedIndustry();
+  await seedJobRole();
 }
 
 main()

@@ -68,6 +68,11 @@ export type Industry = $Result.DefaultSelection<Prisma.$IndustryPayload>
  * 
  */
 export type CompanyIndustry = $Result.DefaultSelection<Prisma.$CompanyIndustryPayload>
+/**
+ * Model JobRole
+ * 
+ */
+export type JobRole = $Result.DefaultSelection<Prisma.$JobRolePayload>
 
 /**
  * Enums
@@ -99,6 +104,15 @@ export const Level: {
 
 export type Level = (typeof Level)[keyof typeof Level]
 
+
+export const JobStatus: {
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED',
+  PAUSED: 'PAUSED'
+};
+
+export type JobStatus = (typeof JobStatus)[keyof typeof JobStatus]
+
 }
 
 export type Role = $Enums.Role
@@ -112,6 +126,10 @@ export const Gender: typeof $Enums.Gender
 export type Level = $Enums.Level
 
 export const Level: typeof $Enums.Level
+
+export type JobStatus = $Enums.JobStatus
+
+export const JobStatus: typeof $Enums.JobStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -339,6 +357,16 @@ export class PrismaClient<
     * ```
     */
   get companyIndustry(): Prisma.CompanyIndustryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.jobRole`: Exposes CRUD operations for the **JobRole** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JobRoles
+    * const jobRoles = await prisma.jobRole.findMany()
+    * ```
+    */
+  get jobRole(): Prisma.JobRoleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -783,7 +811,8 @@ export namespace Prisma {
     Company: 'Company',
     CompanyImage: 'CompanyImage',
     Industry: 'Industry',
-    CompanyIndustry: 'CompanyIndustry'
+    CompanyIndustry: 'CompanyIndustry',
+    JobRole: 'JobRole'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -799,7 +828,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation" | "candidateExperience" | "company" | "companyImage" | "industry" | "companyIndustry"
+      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation" | "candidateExperience" | "company" | "companyImage" | "industry" | "companyIndustry" | "jobRole"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1617,6 +1646,80 @@ export namespace Prisma {
           }
         }
       }
+      JobRole: {
+        payload: Prisma.$JobRolePayload<ExtArgs>
+        fields: Prisma.JobRoleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JobRoleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JobRoleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>
+          }
+          findFirst: {
+            args: Prisma.JobRoleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JobRoleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>
+          }
+          findMany: {
+            args: Prisma.JobRoleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>[]
+          }
+          create: {
+            args: Prisma.JobRoleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>
+          }
+          createMany: {
+            args: Prisma.JobRoleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JobRoleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>[]
+          }
+          delete: {
+            args: Prisma.JobRoleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>
+          }
+          update: {
+            args: Prisma.JobRoleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>
+          }
+          deleteMany: {
+            args: Prisma.JobRoleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JobRoleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JobRoleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>[]
+          }
+          upsert: {
+            args: Prisma.JobRoleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobRolePayload>
+          }
+          aggregate: {
+            args: Prisma.JobRoleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJobRole>
+          }
+          groupBy: {
+            args: Prisma.JobRoleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JobRoleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JobRoleCountArgs<ExtArgs>
+            result: $Utils.Optional<JobRoleCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1736,6 +1839,7 @@ export namespace Prisma {
     companyImage?: CompanyImageOmit
     industry?: IndustryOmit
     companyIndustry?: CompanyIndustryOmit
+    jobRole?: JobRoleOmit
   }
 
   /* Types for Logging */
@@ -14325,6 +14429,1022 @@ export namespace Prisma {
 
 
   /**
+   * Model JobRole
+   */
+
+  export type AggregateJobRole = {
+    _count: JobRoleCountAggregateOutputType | null
+    _avg: JobRoleAvgAggregateOutputType | null
+    _sum: JobRoleSumAggregateOutputType | null
+    _min: JobRoleMinAggregateOutputType | null
+    _max: JobRoleMaxAggregateOutputType | null
+  }
+
+  export type JobRoleAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type JobRoleSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type JobRoleMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    description: string | null
+  }
+
+  export type JobRoleMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    description: string | null
+  }
+
+  export type JobRoleCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    description: number
+    _all: number
+  }
+
+
+  export type JobRoleAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type JobRoleSumAggregateInputType = {
+    id?: true
+  }
+
+  export type JobRoleMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+  }
+
+  export type JobRoleMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+  }
+
+  export type JobRoleCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+    _all?: true
+  }
+
+  export type JobRoleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JobRole to aggregate.
+     */
+    where?: JobRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobRoles to fetch.
+     */
+    orderBy?: JobRoleOrderByWithRelationInput | JobRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JobRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned JobRoles
+    **/
+    _count?: true | JobRoleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: JobRoleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: JobRoleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JobRoleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JobRoleMaxAggregateInputType
+  }
+
+  export type GetJobRoleAggregateType<T extends JobRoleAggregateArgs> = {
+        [P in keyof T & keyof AggregateJobRole]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJobRole[P]>
+      : GetScalarType<T[P], AggregateJobRole[P]>
+  }
+
+
+
+
+  export type JobRoleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JobRoleWhereInput
+    orderBy?: JobRoleOrderByWithAggregationInput | JobRoleOrderByWithAggregationInput[]
+    by: JobRoleScalarFieldEnum[] | JobRoleScalarFieldEnum
+    having?: JobRoleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JobRoleCountAggregateInputType | true
+    _avg?: JobRoleAvgAggregateInputType
+    _sum?: JobRoleSumAggregateInputType
+    _min?: JobRoleMinAggregateInputType
+    _max?: JobRoleMaxAggregateInputType
+  }
+
+  export type JobRoleGroupByOutputType = {
+    id: number
+    name: string
+    slug: string
+    description: string | null
+    _count: JobRoleCountAggregateOutputType | null
+    _avg: JobRoleAvgAggregateOutputType | null
+    _sum: JobRoleSumAggregateOutputType | null
+    _min: JobRoleMinAggregateOutputType | null
+    _max: JobRoleMaxAggregateOutputType | null
+  }
+
+  type GetJobRoleGroupByPayload<T extends JobRoleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JobRoleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JobRoleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JobRoleGroupByOutputType[P]>
+            : GetScalarType<T[P], JobRoleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JobRoleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["jobRole"]>
+
+  export type JobRoleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["jobRole"]>
+
+  export type JobRoleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["jobRole"]>
+
+  export type JobRoleSelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }
+
+  export type JobRoleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description", ExtArgs["result"]["jobRole"]>
+
+  export type $JobRolePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "JobRole"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      slug: string
+      description: string | null
+    }, ExtArgs["result"]["jobRole"]>
+    composites: {}
+  }
+
+  type JobRoleGetPayload<S extends boolean | null | undefined | JobRoleDefaultArgs> = $Result.GetResult<Prisma.$JobRolePayload, S>
+
+  type JobRoleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JobRoleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JobRoleCountAggregateInputType | true
+    }
+
+  export interface JobRoleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JobRole'], meta: { name: 'JobRole' } }
+    /**
+     * Find zero or one JobRole that matches the filter.
+     * @param {JobRoleFindUniqueArgs} args - Arguments to find a JobRole
+     * @example
+     * // Get one JobRole
+     * const jobRole = await prisma.jobRole.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JobRoleFindUniqueArgs>(args: SelectSubset<T, JobRoleFindUniqueArgs<ExtArgs>>): Prisma__JobRoleClient<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one JobRole that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JobRoleFindUniqueOrThrowArgs} args - Arguments to find a JobRole
+     * @example
+     * // Get one JobRole
+     * const jobRole = await prisma.jobRole.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JobRoleFindUniqueOrThrowArgs>(args: SelectSubset<T, JobRoleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JobRoleClient<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JobRole that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobRoleFindFirstArgs} args - Arguments to find a JobRole
+     * @example
+     * // Get one JobRole
+     * const jobRole = await prisma.jobRole.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JobRoleFindFirstArgs>(args?: SelectSubset<T, JobRoleFindFirstArgs<ExtArgs>>): Prisma__JobRoleClient<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JobRole that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobRoleFindFirstOrThrowArgs} args - Arguments to find a JobRole
+     * @example
+     * // Get one JobRole
+     * const jobRole = await prisma.jobRole.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JobRoleFindFirstOrThrowArgs>(args?: SelectSubset<T, JobRoleFindFirstOrThrowArgs<ExtArgs>>): Prisma__JobRoleClient<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more JobRoles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobRoleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JobRoles
+     * const jobRoles = await prisma.jobRole.findMany()
+     * 
+     * // Get first 10 JobRoles
+     * const jobRoles = await prisma.jobRole.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jobRoleWithIdOnly = await prisma.jobRole.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JobRoleFindManyArgs>(args?: SelectSubset<T, JobRoleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a JobRole.
+     * @param {JobRoleCreateArgs} args - Arguments to create a JobRole.
+     * @example
+     * // Create one JobRole
+     * const JobRole = await prisma.jobRole.create({
+     *   data: {
+     *     // ... data to create a JobRole
+     *   }
+     * })
+     * 
+     */
+    create<T extends JobRoleCreateArgs>(args: SelectSubset<T, JobRoleCreateArgs<ExtArgs>>): Prisma__JobRoleClient<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many JobRoles.
+     * @param {JobRoleCreateManyArgs} args - Arguments to create many JobRoles.
+     * @example
+     * // Create many JobRoles
+     * const jobRole = await prisma.jobRole.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JobRoleCreateManyArgs>(args?: SelectSubset<T, JobRoleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JobRoles and returns the data saved in the database.
+     * @param {JobRoleCreateManyAndReturnArgs} args - Arguments to create many JobRoles.
+     * @example
+     * // Create many JobRoles
+     * const jobRole = await prisma.jobRole.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JobRoles and only return the `id`
+     * const jobRoleWithIdOnly = await prisma.jobRole.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JobRoleCreateManyAndReturnArgs>(args?: SelectSubset<T, JobRoleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a JobRole.
+     * @param {JobRoleDeleteArgs} args - Arguments to delete one JobRole.
+     * @example
+     * // Delete one JobRole
+     * const JobRole = await prisma.jobRole.delete({
+     *   where: {
+     *     // ... filter to delete one JobRole
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JobRoleDeleteArgs>(args: SelectSubset<T, JobRoleDeleteArgs<ExtArgs>>): Prisma__JobRoleClient<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one JobRole.
+     * @param {JobRoleUpdateArgs} args - Arguments to update one JobRole.
+     * @example
+     * // Update one JobRole
+     * const jobRole = await prisma.jobRole.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JobRoleUpdateArgs>(args: SelectSubset<T, JobRoleUpdateArgs<ExtArgs>>): Prisma__JobRoleClient<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more JobRoles.
+     * @param {JobRoleDeleteManyArgs} args - Arguments to filter JobRoles to delete.
+     * @example
+     * // Delete a few JobRoles
+     * const { count } = await prisma.jobRole.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JobRoleDeleteManyArgs>(args?: SelectSubset<T, JobRoleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JobRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobRoleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JobRoles
+     * const jobRole = await prisma.jobRole.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JobRoleUpdateManyArgs>(args: SelectSubset<T, JobRoleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JobRoles and returns the data updated in the database.
+     * @param {JobRoleUpdateManyAndReturnArgs} args - Arguments to update many JobRoles.
+     * @example
+     * // Update many JobRoles
+     * const jobRole = await prisma.jobRole.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more JobRoles and only return the `id`
+     * const jobRoleWithIdOnly = await prisma.jobRole.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JobRoleUpdateManyAndReturnArgs>(args: SelectSubset<T, JobRoleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one JobRole.
+     * @param {JobRoleUpsertArgs} args - Arguments to update or create a JobRole.
+     * @example
+     * // Update or create a JobRole
+     * const jobRole = await prisma.jobRole.upsert({
+     *   create: {
+     *     // ... data to create a JobRole
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JobRole we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JobRoleUpsertArgs>(args: SelectSubset<T, JobRoleUpsertArgs<ExtArgs>>): Prisma__JobRoleClient<$Result.GetResult<Prisma.$JobRolePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of JobRoles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobRoleCountArgs} args - Arguments to filter JobRoles to count.
+     * @example
+     * // Count the number of JobRoles
+     * const count = await prisma.jobRole.count({
+     *   where: {
+     *     // ... the filter for the JobRoles we want to count
+     *   }
+     * })
+    **/
+    count<T extends JobRoleCountArgs>(
+      args?: Subset<T, JobRoleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JobRoleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JobRole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobRoleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JobRoleAggregateArgs>(args: Subset<T, JobRoleAggregateArgs>): Prisma.PrismaPromise<GetJobRoleAggregateType<T>>
+
+    /**
+     * Group by JobRole.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobRoleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JobRoleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JobRoleGroupByArgs['orderBy'] }
+        : { orderBy?: JobRoleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JobRoleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJobRoleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the JobRole model
+   */
+  readonly fields: JobRoleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for JobRole.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JobRoleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the JobRole model
+   */
+  interface JobRoleFieldRefs {
+    readonly id: FieldRef<"JobRole", 'Int'>
+    readonly name: FieldRef<"JobRole", 'String'>
+    readonly slug: FieldRef<"JobRole", 'String'>
+    readonly description: FieldRef<"JobRole", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * JobRole findUnique
+   */
+  export type JobRoleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * Filter, which JobRole to fetch.
+     */
+    where: JobRoleWhereUniqueInput
+  }
+
+  /**
+   * JobRole findUniqueOrThrow
+   */
+  export type JobRoleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * Filter, which JobRole to fetch.
+     */
+    where: JobRoleWhereUniqueInput
+  }
+
+  /**
+   * JobRole findFirst
+   */
+  export type JobRoleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * Filter, which JobRole to fetch.
+     */
+    where?: JobRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobRoles to fetch.
+     */
+    orderBy?: JobRoleOrderByWithRelationInput | JobRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JobRoles.
+     */
+    cursor?: JobRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobRoles.
+     */
+    distinct?: JobRoleScalarFieldEnum | JobRoleScalarFieldEnum[]
+  }
+
+  /**
+   * JobRole findFirstOrThrow
+   */
+  export type JobRoleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * Filter, which JobRole to fetch.
+     */
+    where?: JobRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobRoles to fetch.
+     */
+    orderBy?: JobRoleOrderByWithRelationInput | JobRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JobRoles.
+     */
+    cursor?: JobRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobRoles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobRoles.
+     */
+    distinct?: JobRoleScalarFieldEnum | JobRoleScalarFieldEnum[]
+  }
+
+  /**
+   * JobRole findMany
+   */
+  export type JobRoleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * Filter, which JobRoles to fetch.
+     */
+    where?: JobRoleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobRoles to fetch.
+     */
+    orderBy?: JobRoleOrderByWithRelationInput | JobRoleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing JobRoles.
+     */
+    cursor?: JobRoleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobRoles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobRoles.
+     */
+    skip?: number
+    distinct?: JobRoleScalarFieldEnum | JobRoleScalarFieldEnum[]
+  }
+
+  /**
+   * JobRole create
+   */
+  export type JobRoleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * The data needed to create a JobRole.
+     */
+    data: XOR<JobRoleCreateInput, JobRoleUncheckedCreateInput>
+  }
+
+  /**
+   * JobRole createMany
+   */
+  export type JobRoleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many JobRoles.
+     */
+    data: JobRoleCreateManyInput | JobRoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JobRole createManyAndReturn
+   */
+  export type JobRoleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * The data used to create many JobRoles.
+     */
+    data: JobRoleCreateManyInput | JobRoleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JobRole update
+   */
+  export type JobRoleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * The data needed to update a JobRole.
+     */
+    data: XOR<JobRoleUpdateInput, JobRoleUncheckedUpdateInput>
+    /**
+     * Choose, which JobRole to update.
+     */
+    where: JobRoleWhereUniqueInput
+  }
+
+  /**
+   * JobRole updateMany
+   */
+  export type JobRoleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update JobRoles.
+     */
+    data: XOR<JobRoleUpdateManyMutationInput, JobRoleUncheckedUpdateManyInput>
+    /**
+     * Filter which JobRoles to update
+     */
+    where?: JobRoleWhereInput
+    /**
+     * Limit how many JobRoles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JobRole updateManyAndReturn
+   */
+  export type JobRoleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * The data used to update JobRoles.
+     */
+    data: XOR<JobRoleUpdateManyMutationInput, JobRoleUncheckedUpdateManyInput>
+    /**
+     * Filter which JobRoles to update
+     */
+    where?: JobRoleWhereInput
+    /**
+     * Limit how many JobRoles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JobRole upsert
+   */
+  export type JobRoleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * The filter to search for the JobRole to update in case it exists.
+     */
+    where: JobRoleWhereUniqueInput
+    /**
+     * In case the JobRole found by the `where` argument doesn't exist, create a new JobRole with this data.
+     */
+    create: XOR<JobRoleCreateInput, JobRoleUncheckedCreateInput>
+    /**
+     * In case the JobRole was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JobRoleUpdateInput, JobRoleUncheckedUpdateInput>
+  }
+
+  /**
+   * JobRole delete
+   */
+  export type JobRoleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+    /**
+     * Filter which JobRole to delete.
+     */
+    where: JobRoleWhereUniqueInput
+  }
+
+  /**
+   * JobRole deleteMany
+   */
+  export type JobRoleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JobRoles to delete
+     */
+    where?: JobRoleWhereInput
+    /**
+     * Limit how many JobRoles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * JobRole without action
+   */
+  export type JobRoleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobRole
+     */
+    select?: JobRoleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobRole
+     */
+    omit?: JobRoleOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14460,6 +15580,16 @@ export namespace Prisma {
   };
 
   export type CompanyIndustryScalarFieldEnum = (typeof CompanyIndustryScalarFieldEnum)[keyof typeof CompanyIndustryScalarFieldEnum]
+
+
+  export const JobRoleScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    description: 'description'
+  };
+
+  export type JobRoleScalarFieldEnum = (typeof JobRoleScalarFieldEnum)[keyof typeof JobRoleScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -15269,6 +16399,55 @@ export namespace Prisma {
     industryId?: IntWithAggregatesFilter<"CompanyIndustry"> | number
   }
 
+  export type JobRoleWhereInput = {
+    AND?: JobRoleWhereInput | JobRoleWhereInput[]
+    OR?: JobRoleWhereInput[]
+    NOT?: JobRoleWhereInput | JobRoleWhereInput[]
+    id?: IntFilter<"JobRole"> | number
+    name?: StringFilter<"JobRole"> | string
+    slug?: StringFilter<"JobRole"> | string
+    description?: StringNullableFilter<"JobRole"> | string | null
+  }
+
+  export type JobRoleOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+  }
+
+  export type JobRoleWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    slug?: string
+    AND?: JobRoleWhereInput | JobRoleWhereInput[]
+    OR?: JobRoleWhereInput[]
+    NOT?: JobRoleWhereInput | JobRoleWhereInput[]
+    name?: StringFilter<"JobRole"> | string
+    description?: StringNullableFilter<"JobRole"> | string | null
+  }, "id" | "slug">
+
+  export type JobRoleOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    _count?: JobRoleCountOrderByAggregateInput
+    _avg?: JobRoleAvgOrderByAggregateInput
+    _max?: JobRoleMaxOrderByAggregateInput
+    _min?: JobRoleMinOrderByAggregateInput
+    _sum?: JobRoleSumOrderByAggregateInput
+  }
+
+  export type JobRoleScalarWhereWithAggregatesInput = {
+    AND?: JobRoleScalarWhereWithAggregatesInput | JobRoleScalarWhereWithAggregatesInput[]
+    OR?: JobRoleScalarWhereWithAggregatesInput[]
+    NOT?: JobRoleScalarWhereWithAggregatesInput | JobRoleScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"JobRole"> | number
+    name?: StringWithAggregatesFilter<"JobRole"> | string
+    slug?: StringWithAggregatesFilter<"JobRole"> | string
+    description?: StringNullableWithAggregatesFilter<"JobRole"> | string | null
+  }
+
   export type UserCreateInput = {
     name?: string | null
     email: string
@@ -15914,6 +17093,52 @@ export namespace Prisma {
   export type CompanyIndustryUncheckedUpdateManyInput = {
     companyId?: IntFieldUpdateOperationsInput | number
     industryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type JobRoleCreateInput = {
+    name: string
+    slug: string
+    description?: string | null
+  }
+
+  export type JobRoleUncheckedCreateInput = {
+    id?: number
+    name: string
+    slug: string
+    description?: string | null
+  }
+
+  export type JobRoleUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type JobRoleUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type JobRoleCreateManyInput = {
+    id?: number
+    name: string
+    slug: string
+    description?: string | null
+  }
+
+  export type JobRoleUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type JobRoleUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -16609,6 +17834,35 @@ export namespace Prisma {
   export type CompanyIndustrySumOrderByAggregateInput = {
     companyId?: SortOrder
     industryId?: SortOrder
+  }
+
+  export type JobRoleCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type JobRoleAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type JobRoleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type JobRoleMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type JobRoleSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type CandidateProfileCreateNestedOneWithoutUserInput = {

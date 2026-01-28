@@ -8,8 +8,7 @@ dotenv.config();
 export async function seedEducation() {
   const fk = faker;
 
-  const data: Education[] = Array.from({ length: 5 }, (_, index) => ({
-    id: index + 1,
+  const data = Array.from({ length: 5 }, (_, index) => ({
     name: fk.company.name(),
     map: fk.internet.url(),
     slug: fk.helpers.slugify(fk.company.name().toLowerCase()),
