@@ -102,14 +102,32 @@ model Company {
   websiteUrl          String?
   isApproved          Boolean          @default(false)
   mapLink             String?
-  images             CompanyImage[]
+  images              CompanyImage[]
+  industries          CompanyIndustry[]
 }
 
 model CompanyImage {
-  id          Int     @id @default(autoincrement())
-  company     Company @relation(fields: [companyId], references: [id])
-  companyId   Int
-  imageUrl    String
+  id                  Int     @id @default(autoincrement())
+  company             Company @relation(fields: [companyId], references: [id])
+  companyId           Int
+  imageUrl            String
+}
+
+model Industry{
+  id                  Int     @id @default(autoincrement())
+  name                String
+  slug                String  @unique
+  description         String
+  industries          CompanyIndustry[]
+}
+
+model CompanyIndustry{
+  company             Company   @relation(fields: [companyId], references: [id])
+  companyId           Int
+  industry            Industry  @relation(fields: [industryId], references: [id])
+  industryId          Int
+
+  @@unique([companyId, industryId])
 }
 
 enum Role {

@@ -58,6 +58,16 @@ export type Company = $Result.DefaultSelection<Prisma.$CompanyPayload>
  * 
  */
 export type CompanyImage = $Result.DefaultSelection<Prisma.$CompanyImagePayload>
+/**
+ * Model Industry
+ * 
+ */
+export type Industry = $Result.DefaultSelection<Prisma.$IndustryPayload>
+/**
+ * Model CompanyIndustry
+ * 
+ */
+export type CompanyIndustry = $Result.DefaultSelection<Prisma.$CompanyIndustryPayload>
 
 /**
  * Enums
@@ -309,6 +319,26 @@ export class PrismaClient<
     * ```
     */
   get companyImage(): Prisma.CompanyImageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.industry`: Exposes CRUD operations for the **Industry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Industries
+    * const industries = await prisma.industry.findMany()
+    * ```
+    */
+  get industry(): Prisma.IndustryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.companyIndustry`: Exposes CRUD operations for the **CompanyIndustry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CompanyIndustries
+    * const companyIndustries = await prisma.companyIndustry.findMany()
+    * ```
+    */
+  get companyIndustry(): Prisma.CompanyIndustryDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -359,8 +389,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 7.2.0
-   * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
+   * Prisma Client JS version: 7.3.0
+   * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
    */
   export type PrismaVersion = {
     client: string
@@ -751,7 +781,9 @@ export namespace Prisma {
     CandidateEducation: 'CandidateEducation',
     CandidateExperience: 'CandidateExperience',
     Company: 'Company',
-    CompanyImage: 'CompanyImage'
+    CompanyImage: 'CompanyImage',
+    Industry: 'Industry',
+    CompanyIndustry: 'CompanyIndustry'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -767,7 +799,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation" | "candidateExperience" | "company" | "companyImage"
+      modelProps: "user" | "candidateProfile" | "language" | "candidateLanguage" | "education" | "candidateEducation" | "candidateExperience" | "company" | "companyImage" | "industry" | "companyIndustry"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1437,6 +1469,154 @@ export namespace Prisma {
           }
         }
       }
+      Industry: {
+        payload: Prisma.$IndustryPayload<ExtArgs>
+        fields: Prisma.IndustryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.IndustryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.IndustryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>
+          }
+          findFirst: {
+            args: Prisma.IndustryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.IndustryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>
+          }
+          findMany: {
+            args: Prisma.IndustryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>[]
+          }
+          create: {
+            args: Prisma.IndustryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>
+          }
+          createMany: {
+            args: Prisma.IndustryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.IndustryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>[]
+          }
+          delete: {
+            args: Prisma.IndustryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>
+          }
+          update: {
+            args: Prisma.IndustryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>
+          }
+          deleteMany: {
+            args: Prisma.IndustryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.IndustryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.IndustryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>[]
+          }
+          upsert: {
+            args: Prisma.IndustryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$IndustryPayload>
+          }
+          aggregate: {
+            args: Prisma.IndustryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateIndustry>
+          }
+          groupBy: {
+            args: Prisma.IndustryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<IndustryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.IndustryCountArgs<ExtArgs>
+            result: $Utils.Optional<IndustryCountAggregateOutputType> | number
+          }
+        }
+      }
+      CompanyIndustry: {
+        payload: Prisma.$CompanyIndustryPayload<ExtArgs>
+        fields: Prisma.CompanyIndustryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CompanyIndustryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CompanyIndustryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>
+          }
+          findFirst: {
+            args: Prisma.CompanyIndustryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CompanyIndustryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>
+          }
+          findMany: {
+            args: Prisma.CompanyIndustryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>[]
+          }
+          create: {
+            args: Prisma.CompanyIndustryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>
+          }
+          createMany: {
+            args: Prisma.CompanyIndustryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CompanyIndustryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>[]
+          }
+          delete: {
+            args: Prisma.CompanyIndustryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>
+          }
+          update: {
+            args: Prisma.CompanyIndustryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>
+          }
+          deleteMany: {
+            args: Prisma.CompanyIndustryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CompanyIndustryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CompanyIndustryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>[]
+          }
+          upsert: {
+            args: Prisma.CompanyIndustryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanyIndustryPayload>
+          }
+          aggregate: {
+            args: Prisma.CompanyIndustryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCompanyIndustry>
+          }
+          groupBy: {
+            args: Prisma.CompanyIndustryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CompanyIndustryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CompanyIndustryCountArgs<ExtArgs>
+            result: $Utils.Optional<CompanyIndustryCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1554,6 +1734,8 @@ export namespace Prisma {
     candidateExperience?: CandidateExperienceOmit
     company?: CompanyOmit
     companyImage?: CompanyImageOmit
+    industry?: IndustryOmit
+    companyIndustry?: CompanyIndustryOmit
   }
 
   /* Types for Logging */
@@ -1777,10 +1959,12 @@ export namespace Prisma {
 
   export type CompanyCountOutputType = {
     images: number
+    industries: number
   }
 
   export type CompanyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     images?: boolean | CompanyCountOutputTypeCountImagesArgs
+    industries?: boolean | CompanyCountOutputTypeCountIndustriesArgs
   }
 
   // Custom InputTypes
@@ -1799,6 +1983,44 @@ export namespace Prisma {
    */
   export type CompanyCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CompanyImageWhereInput
+  }
+
+  /**
+   * CompanyCountOutputType without action
+   */
+  export type CompanyCountOutputTypeCountIndustriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompanyIndustryWhereInput
+  }
+
+
+  /**
+   * Count Type IndustryCountOutputType
+   */
+
+  export type IndustryCountOutputType = {
+    industries: number
+  }
+
+  export type IndustryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    industries?: boolean | IndustryCountOutputTypeCountIndustriesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * IndustryCountOutputType without action
+   */
+  export type IndustryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the IndustryCountOutputType
+     */
+    select?: IndustryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * IndustryCountOutputType without action
+   */
+  export type IndustryCountOutputTypeCountIndustriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompanyIndustryWhereInput
   }
 
 
@@ -9896,6 +10118,7 @@ export namespace Prisma {
     mapLink?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     images?: boolean | Company$imagesArgs<ExtArgs>
+    industries?: boolean | Company$industriesArgs<ExtArgs>
     _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["company"]>
 
@@ -9947,6 +10170,7 @@ export namespace Prisma {
   export type CompanyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     images?: boolean | Company$imagesArgs<ExtArgs>
+    industries?: boolean | Company$industriesArgs<ExtArgs>
     _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CompanyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9961,6 +10185,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       images: Prisma.$CompanyImagePayload<ExtArgs>[]
+      industries: Prisma.$CompanyIndustryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -10370,6 +10595,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     images<T extends Company$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Company$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    industries<T extends Company$industriesArgs<ExtArgs> = {}>(args?: Subset<T, Company$industriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10827,6 +11053,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CompanyImageScalarFieldEnum | CompanyImageScalarFieldEnum[]
+  }
+
+  /**
+   * Company.industries
+   */
+  export type Company$industriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    where?: CompanyIndustryWhereInput
+    orderBy?: CompanyIndustryOrderByWithRelationInput | CompanyIndustryOrderByWithRelationInput[]
+    cursor?: CompanyIndustryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CompanyIndustryScalarFieldEnum | CompanyIndustryScalarFieldEnum[]
   }
 
   /**
@@ -11919,6 +12169,2162 @@ export namespace Prisma {
 
 
   /**
+   * Model Industry
+   */
+
+  export type AggregateIndustry = {
+    _count: IndustryCountAggregateOutputType | null
+    _avg: IndustryAvgAggregateOutputType | null
+    _sum: IndustrySumAggregateOutputType | null
+    _min: IndustryMinAggregateOutputType | null
+    _max: IndustryMaxAggregateOutputType | null
+  }
+
+  export type IndustryAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type IndustrySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type IndustryMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    description: string | null
+  }
+
+  export type IndustryMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    description: string | null
+  }
+
+  export type IndustryCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    description: number
+    _all: number
+  }
+
+
+  export type IndustryAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type IndustrySumAggregateInputType = {
+    id?: true
+  }
+
+  export type IndustryMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+  }
+
+  export type IndustryMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+  }
+
+  export type IndustryCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+    _all?: true
+  }
+
+  export type IndustryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Industry to aggregate.
+     */
+    where?: IndustryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Industries to fetch.
+     */
+    orderBy?: IndustryOrderByWithRelationInput | IndustryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: IndustryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Industries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Industries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Industries
+    **/
+    _count?: true | IndustryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: IndustryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: IndustrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: IndustryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: IndustryMaxAggregateInputType
+  }
+
+  export type GetIndustryAggregateType<T extends IndustryAggregateArgs> = {
+        [P in keyof T & keyof AggregateIndustry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateIndustry[P]>
+      : GetScalarType<T[P], AggregateIndustry[P]>
+  }
+
+
+
+
+  export type IndustryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: IndustryWhereInput
+    orderBy?: IndustryOrderByWithAggregationInput | IndustryOrderByWithAggregationInput[]
+    by: IndustryScalarFieldEnum[] | IndustryScalarFieldEnum
+    having?: IndustryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: IndustryCountAggregateInputType | true
+    _avg?: IndustryAvgAggregateInputType
+    _sum?: IndustrySumAggregateInputType
+    _min?: IndustryMinAggregateInputType
+    _max?: IndustryMaxAggregateInputType
+  }
+
+  export type IndustryGroupByOutputType = {
+    id: number
+    name: string
+    slug: string
+    description: string
+    _count: IndustryCountAggregateOutputType | null
+    _avg: IndustryAvgAggregateOutputType | null
+    _sum: IndustrySumAggregateOutputType | null
+    _min: IndustryMinAggregateOutputType | null
+    _max: IndustryMaxAggregateOutputType | null
+  }
+
+  type GetIndustryGroupByPayload<T extends IndustryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<IndustryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof IndustryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], IndustryGroupByOutputType[P]>
+            : GetScalarType<T[P], IndustryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type IndustrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    industries?: boolean | Industry$industriesArgs<ExtArgs>
+    _count?: boolean | IndustryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["industry"]>
+
+  export type IndustrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["industry"]>
+
+  export type IndustrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }, ExtArgs["result"]["industry"]>
+
+  export type IndustrySelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+  }
+
+  export type IndustryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description", ExtArgs["result"]["industry"]>
+  export type IndustryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    industries?: boolean | Industry$industriesArgs<ExtArgs>
+    _count?: boolean | IndustryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type IndustryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type IndustryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $IndustryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Industry"
+    objects: {
+      industries: Prisma.$CompanyIndustryPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      slug: string
+      description: string
+    }, ExtArgs["result"]["industry"]>
+    composites: {}
+  }
+
+  type IndustryGetPayload<S extends boolean | null | undefined | IndustryDefaultArgs> = $Result.GetResult<Prisma.$IndustryPayload, S>
+
+  type IndustryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<IndustryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: IndustryCountAggregateInputType | true
+    }
+
+  export interface IndustryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Industry'], meta: { name: 'Industry' } }
+    /**
+     * Find zero or one Industry that matches the filter.
+     * @param {IndustryFindUniqueArgs} args - Arguments to find a Industry
+     * @example
+     * // Get one Industry
+     * const industry = await prisma.industry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends IndustryFindUniqueArgs>(args: SelectSubset<T, IndustryFindUniqueArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Industry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {IndustryFindUniqueOrThrowArgs} args - Arguments to find a Industry
+     * @example
+     * // Get one Industry
+     * const industry = await prisma.industry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends IndustryFindUniqueOrThrowArgs>(args: SelectSubset<T, IndustryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Industry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryFindFirstArgs} args - Arguments to find a Industry
+     * @example
+     * // Get one Industry
+     * const industry = await prisma.industry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends IndustryFindFirstArgs>(args?: SelectSubset<T, IndustryFindFirstArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Industry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryFindFirstOrThrowArgs} args - Arguments to find a Industry
+     * @example
+     * // Get one Industry
+     * const industry = await prisma.industry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends IndustryFindFirstOrThrowArgs>(args?: SelectSubset<T, IndustryFindFirstOrThrowArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Industries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Industries
+     * const industries = await prisma.industry.findMany()
+     * 
+     * // Get first 10 Industries
+     * const industries = await prisma.industry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const industryWithIdOnly = await prisma.industry.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends IndustryFindManyArgs>(args?: SelectSubset<T, IndustryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Industry.
+     * @param {IndustryCreateArgs} args - Arguments to create a Industry.
+     * @example
+     * // Create one Industry
+     * const Industry = await prisma.industry.create({
+     *   data: {
+     *     // ... data to create a Industry
+     *   }
+     * })
+     * 
+     */
+    create<T extends IndustryCreateArgs>(args: SelectSubset<T, IndustryCreateArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Industries.
+     * @param {IndustryCreateManyArgs} args - Arguments to create many Industries.
+     * @example
+     * // Create many Industries
+     * const industry = await prisma.industry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends IndustryCreateManyArgs>(args?: SelectSubset<T, IndustryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Industries and returns the data saved in the database.
+     * @param {IndustryCreateManyAndReturnArgs} args - Arguments to create many Industries.
+     * @example
+     * // Create many Industries
+     * const industry = await prisma.industry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Industries and only return the `id`
+     * const industryWithIdOnly = await prisma.industry.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends IndustryCreateManyAndReturnArgs>(args?: SelectSubset<T, IndustryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Industry.
+     * @param {IndustryDeleteArgs} args - Arguments to delete one Industry.
+     * @example
+     * // Delete one Industry
+     * const Industry = await prisma.industry.delete({
+     *   where: {
+     *     // ... filter to delete one Industry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends IndustryDeleteArgs>(args: SelectSubset<T, IndustryDeleteArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Industry.
+     * @param {IndustryUpdateArgs} args - Arguments to update one Industry.
+     * @example
+     * // Update one Industry
+     * const industry = await prisma.industry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends IndustryUpdateArgs>(args: SelectSubset<T, IndustryUpdateArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Industries.
+     * @param {IndustryDeleteManyArgs} args - Arguments to filter Industries to delete.
+     * @example
+     * // Delete a few Industries
+     * const { count } = await prisma.industry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends IndustryDeleteManyArgs>(args?: SelectSubset<T, IndustryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Industries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Industries
+     * const industry = await prisma.industry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends IndustryUpdateManyArgs>(args: SelectSubset<T, IndustryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Industries and returns the data updated in the database.
+     * @param {IndustryUpdateManyAndReturnArgs} args - Arguments to update many Industries.
+     * @example
+     * // Update many Industries
+     * const industry = await prisma.industry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Industries and only return the `id`
+     * const industryWithIdOnly = await prisma.industry.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends IndustryUpdateManyAndReturnArgs>(args: SelectSubset<T, IndustryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Industry.
+     * @param {IndustryUpsertArgs} args - Arguments to update or create a Industry.
+     * @example
+     * // Update or create a Industry
+     * const industry = await prisma.industry.upsert({
+     *   create: {
+     *     // ... data to create a Industry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Industry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends IndustryUpsertArgs>(args: SelectSubset<T, IndustryUpsertArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Industries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryCountArgs} args - Arguments to filter Industries to count.
+     * @example
+     * // Count the number of Industries
+     * const count = await prisma.industry.count({
+     *   where: {
+     *     // ... the filter for the Industries we want to count
+     *   }
+     * })
+    **/
+    count<T extends IndustryCountArgs>(
+      args?: Subset<T, IndustryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], IndustryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Industry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends IndustryAggregateArgs>(args: Subset<T, IndustryAggregateArgs>): Prisma.PrismaPromise<GetIndustryAggregateType<T>>
+
+    /**
+     * Group by Industry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {IndustryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends IndustryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: IndustryGroupByArgs['orderBy'] }
+        : { orderBy?: IndustryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, IndustryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIndustryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Industry model
+   */
+  readonly fields: IndustryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Industry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__IndustryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    industries<T extends Industry$industriesArgs<ExtArgs> = {}>(args?: Subset<T, Industry$industriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Industry model
+   */
+  interface IndustryFieldRefs {
+    readonly id: FieldRef<"Industry", 'Int'>
+    readonly name: FieldRef<"Industry", 'String'>
+    readonly slug: FieldRef<"Industry", 'String'>
+    readonly description: FieldRef<"Industry", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Industry findUnique
+   */
+  export type IndustryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which Industry to fetch.
+     */
+    where: IndustryWhereUniqueInput
+  }
+
+  /**
+   * Industry findUniqueOrThrow
+   */
+  export type IndustryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which Industry to fetch.
+     */
+    where: IndustryWhereUniqueInput
+  }
+
+  /**
+   * Industry findFirst
+   */
+  export type IndustryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which Industry to fetch.
+     */
+    where?: IndustryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Industries to fetch.
+     */
+    orderBy?: IndustryOrderByWithRelationInput | IndustryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Industries.
+     */
+    cursor?: IndustryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Industries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Industries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Industries.
+     */
+    distinct?: IndustryScalarFieldEnum | IndustryScalarFieldEnum[]
+  }
+
+  /**
+   * Industry findFirstOrThrow
+   */
+  export type IndustryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which Industry to fetch.
+     */
+    where?: IndustryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Industries to fetch.
+     */
+    orderBy?: IndustryOrderByWithRelationInput | IndustryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Industries.
+     */
+    cursor?: IndustryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Industries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Industries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Industries.
+     */
+    distinct?: IndustryScalarFieldEnum | IndustryScalarFieldEnum[]
+  }
+
+  /**
+   * Industry findMany
+   */
+  export type IndustryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which Industries to fetch.
+     */
+    where?: IndustryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Industries to fetch.
+     */
+    orderBy?: IndustryOrderByWithRelationInput | IndustryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Industries.
+     */
+    cursor?: IndustryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Industries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Industries.
+     */
+    skip?: number
+    distinct?: IndustryScalarFieldEnum | IndustryScalarFieldEnum[]
+  }
+
+  /**
+   * Industry create
+   */
+  export type IndustryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Industry.
+     */
+    data: XOR<IndustryCreateInput, IndustryUncheckedCreateInput>
+  }
+
+  /**
+   * Industry createMany
+   */
+  export type IndustryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Industries.
+     */
+    data: IndustryCreateManyInput | IndustryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Industry createManyAndReturn
+   */
+  export type IndustryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * The data used to create many Industries.
+     */
+    data: IndustryCreateManyInput | IndustryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Industry update
+   */
+  export type IndustryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Industry.
+     */
+    data: XOR<IndustryUpdateInput, IndustryUncheckedUpdateInput>
+    /**
+     * Choose, which Industry to update.
+     */
+    where: IndustryWhereUniqueInput
+  }
+
+  /**
+   * Industry updateMany
+   */
+  export type IndustryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Industries.
+     */
+    data: XOR<IndustryUpdateManyMutationInput, IndustryUncheckedUpdateManyInput>
+    /**
+     * Filter which Industries to update
+     */
+    where?: IndustryWhereInput
+    /**
+     * Limit how many Industries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Industry updateManyAndReturn
+   */
+  export type IndustryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * The data used to update Industries.
+     */
+    data: XOR<IndustryUpdateManyMutationInput, IndustryUncheckedUpdateManyInput>
+    /**
+     * Filter which Industries to update
+     */
+    where?: IndustryWhereInput
+    /**
+     * Limit how many Industries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Industry upsert
+   */
+  export type IndustryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Industry to update in case it exists.
+     */
+    where: IndustryWhereUniqueInput
+    /**
+     * In case the Industry found by the `where` argument doesn't exist, create a new Industry with this data.
+     */
+    create: XOR<IndustryCreateInput, IndustryUncheckedCreateInput>
+    /**
+     * In case the Industry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<IndustryUpdateInput, IndustryUncheckedUpdateInput>
+  }
+
+  /**
+   * Industry delete
+   */
+  export type IndustryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+    /**
+     * Filter which Industry to delete.
+     */
+    where: IndustryWhereUniqueInput
+  }
+
+  /**
+   * Industry deleteMany
+   */
+  export type IndustryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Industries to delete
+     */
+    where?: IndustryWhereInput
+    /**
+     * Limit how many Industries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Industry.industries
+   */
+  export type Industry$industriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    where?: CompanyIndustryWhereInput
+    orderBy?: CompanyIndustryOrderByWithRelationInput | CompanyIndustryOrderByWithRelationInput[]
+    cursor?: CompanyIndustryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CompanyIndustryScalarFieldEnum | CompanyIndustryScalarFieldEnum[]
+  }
+
+  /**
+   * Industry without action
+   */
+  export type IndustryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Industry
+     */
+    select?: IndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Industry
+     */
+    omit?: IndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: IndustryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CompanyIndustry
+   */
+
+  export type AggregateCompanyIndustry = {
+    _count: CompanyIndustryCountAggregateOutputType | null
+    _avg: CompanyIndustryAvgAggregateOutputType | null
+    _sum: CompanyIndustrySumAggregateOutputType | null
+    _min: CompanyIndustryMinAggregateOutputType | null
+    _max: CompanyIndustryMaxAggregateOutputType | null
+  }
+
+  export type CompanyIndustryAvgAggregateOutputType = {
+    companyId: number | null
+    industryId: number | null
+  }
+
+  export type CompanyIndustrySumAggregateOutputType = {
+    companyId: number | null
+    industryId: number | null
+  }
+
+  export type CompanyIndustryMinAggregateOutputType = {
+    companyId: number | null
+    industryId: number | null
+  }
+
+  export type CompanyIndustryMaxAggregateOutputType = {
+    companyId: number | null
+    industryId: number | null
+  }
+
+  export type CompanyIndustryCountAggregateOutputType = {
+    companyId: number
+    industryId: number
+    _all: number
+  }
+
+
+  export type CompanyIndustryAvgAggregateInputType = {
+    companyId?: true
+    industryId?: true
+  }
+
+  export type CompanyIndustrySumAggregateInputType = {
+    companyId?: true
+    industryId?: true
+  }
+
+  export type CompanyIndustryMinAggregateInputType = {
+    companyId?: true
+    industryId?: true
+  }
+
+  export type CompanyIndustryMaxAggregateInputType = {
+    companyId?: true
+    industryId?: true
+  }
+
+  export type CompanyIndustryCountAggregateInputType = {
+    companyId?: true
+    industryId?: true
+    _all?: true
+  }
+
+  export type CompanyIndustryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CompanyIndustry to aggregate.
+     */
+    where?: CompanyIndustryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyIndustries to fetch.
+     */
+    orderBy?: CompanyIndustryOrderByWithRelationInput | CompanyIndustryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CompanyIndustryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyIndustries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyIndustries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CompanyIndustries
+    **/
+    _count?: true | CompanyIndustryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CompanyIndustryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CompanyIndustrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CompanyIndustryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CompanyIndustryMaxAggregateInputType
+  }
+
+  export type GetCompanyIndustryAggregateType<T extends CompanyIndustryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCompanyIndustry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCompanyIndustry[P]>
+      : GetScalarType<T[P], AggregateCompanyIndustry[P]>
+  }
+
+
+
+
+  export type CompanyIndustryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompanyIndustryWhereInput
+    orderBy?: CompanyIndustryOrderByWithAggregationInput | CompanyIndustryOrderByWithAggregationInput[]
+    by: CompanyIndustryScalarFieldEnum[] | CompanyIndustryScalarFieldEnum
+    having?: CompanyIndustryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CompanyIndustryCountAggregateInputType | true
+    _avg?: CompanyIndustryAvgAggregateInputType
+    _sum?: CompanyIndustrySumAggregateInputType
+    _min?: CompanyIndustryMinAggregateInputType
+    _max?: CompanyIndustryMaxAggregateInputType
+  }
+
+  export type CompanyIndustryGroupByOutputType = {
+    companyId: number
+    industryId: number
+    _count: CompanyIndustryCountAggregateOutputType | null
+    _avg: CompanyIndustryAvgAggregateOutputType | null
+    _sum: CompanyIndustrySumAggregateOutputType | null
+    _min: CompanyIndustryMinAggregateOutputType | null
+    _max: CompanyIndustryMaxAggregateOutputType | null
+  }
+
+  type GetCompanyIndustryGroupByPayload<T extends CompanyIndustryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CompanyIndustryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CompanyIndustryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CompanyIndustryGroupByOutputType[P]>
+            : GetScalarType<T[P], CompanyIndustryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CompanyIndustrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    companyId?: boolean
+    industryId?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+    industry?: boolean | IndustryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["companyIndustry"]>
+
+  export type CompanyIndustrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    companyId?: boolean
+    industryId?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+    industry?: boolean | IndustryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["companyIndustry"]>
+
+  export type CompanyIndustrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    companyId?: boolean
+    industryId?: boolean
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+    industry?: boolean | IndustryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["companyIndustry"]>
+
+  export type CompanyIndustrySelectScalar = {
+    companyId?: boolean
+    industryId?: boolean
+  }
+
+  export type CompanyIndustryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"companyId" | "industryId", ExtArgs["result"]["companyIndustry"]>
+  export type CompanyIndustryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+    industry?: boolean | IndustryDefaultArgs<ExtArgs>
+  }
+  export type CompanyIndustryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+    industry?: boolean | IndustryDefaultArgs<ExtArgs>
+  }
+  export type CompanyIndustryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    company?: boolean | CompanyDefaultArgs<ExtArgs>
+    industry?: boolean | IndustryDefaultArgs<ExtArgs>
+  }
+
+  export type $CompanyIndustryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CompanyIndustry"
+    objects: {
+      company: Prisma.$CompanyPayload<ExtArgs>
+      industry: Prisma.$IndustryPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      companyId: number
+      industryId: number
+    }, ExtArgs["result"]["companyIndustry"]>
+    composites: {}
+  }
+
+  type CompanyIndustryGetPayload<S extends boolean | null | undefined | CompanyIndustryDefaultArgs> = $Result.GetResult<Prisma.$CompanyIndustryPayload, S>
+
+  type CompanyIndustryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CompanyIndustryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CompanyIndustryCountAggregateInputType | true
+    }
+
+  export interface CompanyIndustryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CompanyIndustry'], meta: { name: 'CompanyIndustry' } }
+    /**
+     * Find zero or one CompanyIndustry that matches the filter.
+     * @param {CompanyIndustryFindUniqueArgs} args - Arguments to find a CompanyIndustry
+     * @example
+     * // Get one CompanyIndustry
+     * const companyIndustry = await prisma.companyIndustry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CompanyIndustryFindUniqueArgs>(args: SelectSubset<T, CompanyIndustryFindUniqueArgs<ExtArgs>>): Prisma__CompanyIndustryClient<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CompanyIndustry that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CompanyIndustryFindUniqueOrThrowArgs} args - Arguments to find a CompanyIndustry
+     * @example
+     * // Get one CompanyIndustry
+     * const companyIndustry = await prisma.companyIndustry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CompanyIndustryFindUniqueOrThrowArgs>(args: SelectSubset<T, CompanyIndustryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CompanyIndustryClient<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CompanyIndustry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyIndustryFindFirstArgs} args - Arguments to find a CompanyIndustry
+     * @example
+     * // Get one CompanyIndustry
+     * const companyIndustry = await prisma.companyIndustry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CompanyIndustryFindFirstArgs>(args?: SelectSubset<T, CompanyIndustryFindFirstArgs<ExtArgs>>): Prisma__CompanyIndustryClient<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CompanyIndustry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyIndustryFindFirstOrThrowArgs} args - Arguments to find a CompanyIndustry
+     * @example
+     * // Get one CompanyIndustry
+     * const companyIndustry = await prisma.companyIndustry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CompanyIndustryFindFirstOrThrowArgs>(args?: SelectSubset<T, CompanyIndustryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CompanyIndustryClient<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CompanyIndustries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyIndustryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CompanyIndustries
+     * const companyIndustries = await prisma.companyIndustry.findMany()
+     * 
+     * // Get first 10 CompanyIndustries
+     * const companyIndustries = await prisma.companyIndustry.findMany({ take: 10 })
+     * 
+     * // Only select the `companyId`
+     * const companyIndustryWithCompanyIdOnly = await prisma.companyIndustry.findMany({ select: { companyId: true } })
+     * 
+     */
+    findMany<T extends CompanyIndustryFindManyArgs>(args?: SelectSubset<T, CompanyIndustryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CompanyIndustry.
+     * @param {CompanyIndustryCreateArgs} args - Arguments to create a CompanyIndustry.
+     * @example
+     * // Create one CompanyIndustry
+     * const CompanyIndustry = await prisma.companyIndustry.create({
+     *   data: {
+     *     // ... data to create a CompanyIndustry
+     *   }
+     * })
+     * 
+     */
+    create<T extends CompanyIndustryCreateArgs>(args: SelectSubset<T, CompanyIndustryCreateArgs<ExtArgs>>): Prisma__CompanyIndustryClient<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CompanyIndustries.
+     * @param {CompanyIndustryCreateManyArgs} args - Arguments to create many CompanyIndustries.
+     * @example
+     * // Create many CompanyIndustries
+     * const companyIndustry = await prisma.companyIndustry.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CompanyIndustryCreateManyArgs>(args?: SelectSubset<T, CompanyIndustryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CompanyIndustries and returns the data saved in the database.
+     * @param {CompanyIndustryCreateManyAndReturnArgs} args - Arguments to create many CompanyIndustries.
+     * @example
+     * // Create many CompanyIndustries
+     * const companyIndustry = await prisma.companyIndustry.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CompanyIndustries and only return the `companyId`
+     * const companyIndustryWithCompanyIdOnly = await prisma.companyIndustry.createManyAndReturn({
+     *   select: { companyId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CompanyIndustryCreateManyAndReturnArgs>(args?: SelectSubset<T, CompanyIndustryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CompanyIndustry.
+     * @param {CompanyIndustryDeleteArgs} args - Arguments to delete one CompanyIndustry.
+     * @example
+     * // Delete one CompanyIndustry
+     * const CompanyIndustry = await prisma.companyIndustry.delete({
+     *   where: {
+     *     // ... filter to delete one CompanyIndustry
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CompanyIndustryDeleteArgs>(args: SelectSubset<T, CompanyIndustryDeleteArgs<ExtArgs>>): Prisma__CompanyIndustryClient<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CompanyIndustry.
+     * @param {CompanyIndustryUpdateArgs} args - Arguments to update one CompanyIndustry.
+     * @example
+     * // Update one CompanyIndustry
+     * const companyIndustry = await prisma.companyIndustry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CompanyIndustryUpdateArgs>(args: SelectSubset<T, CompanyIndustryUpdateArgs<ExtArgs>>): Prisma__CompanyIndustryClient<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CompanyIndustries.
+     * @param {CompanyIndustryDeleteManyArgs} args - Arguments to filter CompanyIndustries to delete.
+     * @example
+     * // Delete a few CompanyIndustries
+     * const { count } = await prisma.companyIndustry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CompanyIndustryDeleteManyArgs>(args?: SelectSubset<T, CompanyIndustryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CompanyIndustries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyIndustryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CompanyIndustries
+     * const companyIndustry = await prisma.companyIndustry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CompanyIndustryUpdateManyArgs>(args: SelectSubset<T, CompanyIndustryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CompanyIndustries and returns the data updated in the database.
+     * @param {CompanyIndustryUpdateManyAndReturnArgs} args - Arguments to update many CompanyIndustries.
+     * @example
+     * // Update many CompanyIndustries
+     * const companyIndustry = await prisma.companyIndustry.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CompanyIndustries and only return the `companyId`
+     * const companyIndustryWithCompanyIdOnly = await prisma.companyIndustry.updateManyAndReturn({
+     *   select: { companyId: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CompanyIndustryUpdateManyAndReturnArgs>(args: SelectSubset<T, CompanyIndustryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CompanyIndustry.
+     * @param {CompanyIndustryUpsertArgs} args - Arguments to update or create a CompanyIndustry.
+     * @example
+     * // Update or create a CompanyIndustry
+     * const companyIndustry = await prisma.companyIndustry.upsert({
+     *   create: {
+     *     // ... data to create a CompanyIndustry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CompanyIndustry we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CompanyIndustryUpsertArgs>(args: SelectSubset<T, CompanyIndustryUpsertArgs<ExtArgs>>): Prisma__CompanyIndustryClient<$Result.GetResult<Prisma.$CompanyIndustryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CompanyIndustries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyIndustryCountArgs} args - Arguments to filter CompanyIndustries to count.
+     * @example
+     * // Count the number of CompanyIndustries
+     * const count = await prisma.companyIndustry.count({
+     *   where: {
+     *     // ... the filter for the CompanyIndustries we want to count
+     *   }
+     * })
+    **/
+    count<T extends CompanyIndustryCountArgs>(
+      args?: Subset<T, CompanyIndustryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CompanyIndustryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CompanyIndustry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyIndustryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CompanyIndustryAggregateArgs>(args: Subset<T, CompanyIndustryAggregateArgs>): Prisma.PrismaPromise<GetCompanyIndustryAggregateType<T>>
+
+    /**
+     * Group by CompanyIndustry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanyIndustryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CompanyIndustryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CompanyIndustryGroupByArgs['orderBy'] }
+        : { orderBy?: CompanyIndustryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CompanyIndustryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCompanyIndustryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CompanyIndustry model
+   */
+  readonly fields: CompanyIndustryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CompanyIndustry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CompanyIndustryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    industry<T extends IndustryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, IndustryDefaultArgs<ExtArgs>>): Prisma__IndustryClient<$Result.GetResult<Prisma.$IndustryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CompanyIndustry model
+   */
+  interface CompanyIndustryFieldRefs {
+    readonly companyId: FieldRef<"CompanyIndustry", 'Int'>
+    readonly industryId: FieldRef<"CompanyIndustry", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CompanyIndustry findUnique
+   */
+  export type CompanyIndustryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyIndustry to fetch.
+     */
+    where: CompanyIndustryWhereUniqueInput
+  }
+
+  /**
+   * CompanyIndustry findUniqueOrThrow
+   */
+  export type CompanyIndustryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyIndustry to fetch.
+     */
+    where: CompanyIndustryWhereUniqueInput
+  }
+
+  /**
+   * CompanyIndustry findFirst
+   */
+  export type CompanyIndustryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyIndustry to fetch.
+     */
+    where?: CompanyIndustryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyIndustries to fetch.
+     */
+    orderBy?: CompanyIndustryOrderByWithRelationInput | CompanyIndustryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CompanyIndustries.
+     */
+    cursor?: CompanyIndustryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyIndustries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyIndustries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanyIndustries.
+     */
+    distinct?: CompanyIndustryScalarFieldEnum | CompanyIndustryScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyIndustry findFirstOrThrow
+   */
+  export type CompanyIndustryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyIndustry to fetch.
+     */
+    where?: CompanyIndustryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyIndustries to fetch.
+     */
+    orderBy?: CompanyIndustryOrderByWithRelationInput | CompanyIndustryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CompanyIndustries.
+     */
+    cursor?: CompanyIndustryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyIndustries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyIndustries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanyIndustries.
+     */
+    distinct?: CompanyIndustryScalarFieldEnum | CompanyIndustryScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyIndustry findMany
+   */
+  export type CompanyIndustryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * Filter, which CompanyIndustries to fetch.
+     */
+    where?: CompanyIndustryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanyIndustries to fetch.
+     */
+    orderBy?: CompanyIndustryOrderByWithRelationInput | CompanyIndustryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CompanyIndustries.
+     */
+    cursor?: CompanyIndustryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanyIndustries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanyIndustries.
+     */
+    skip?: number
+    distinct?: CompanyIndustryScalarFieldEnum | CompanyIndustryScalarFieldEnum[]
+  }
+
+  /**
+   * CompanyIndustry create
+   */
+  export type CompanyIndustryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CompanyIndustry.
+     */
+    data: XOR<CompanyIndustryCreateInput, CompanyIndustryUncheckedCreateInput>
+  }
+
+  /**
+   * CompanyIndustry createMany
+   */
+  export type CompanyIndustryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CompanyIndustries.
+     */
+    data: CompanyIndustryCreateManyInput | CompanyIndustryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CompanyIndustry createManyAndReturn
+   */
+  export type CompanyIndustryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * The data used to create many CompanyIndustries.
+     */
+    data: CompanyIndustryCreateManyInput | CompanyIndustryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CompanyIndustry update
+   */
+  export type CompanyIndustryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CompanyIndustry.
+     */
+    data: XOR<CompanyIndustryUpdateInput, CompanyIndustryUncheckedUpdateInput>
+    /**
+     * Choose, which CompanyIndustry to update.
+     */
+    where: CompanyIndustryWhereUniqueInput
+  }
+
+  /**
+   * CompanyIndustry updateMany
+   */
+  export type CompanyIndustryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CompanyIndustries.
+     */
+    data: XOR<CompanyIndustryUpdateManyMutationInput, CompanyIndustryUncheckedUpdateManyInput>
+    /**
+     * Filter which CompanyIndustries to update
+     */
+    where?: CompanyIndustryWhereInput
+    /**
+     * Limit how many CompanyIndustries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanyIndustry updateManyAndReturn
+   */
+  export type CompanyIndustryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * The data used to update CompanyIndustries.
+     */
+    data: XOR<CompanyIndustryUpdateManyMutationInput, CompanyIndustryUncheckedUpdateManyInput>
+    /**
+     * Filter which CompanyIndustries to update
+     */
+    where?: CompanyIndustryWhereInput
+    /**
+     * Limit how many CompanyIndustries to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CompanyIndustry upsert
+   */
+  export type CompanyIndustryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CompanyIndustry to update in case it exists.
+     */
+    where: CompanyIndustryWhereUniqueInput
+    /**
+     * In case the CompanyIndustry found by the `where` argument doesn't exist, create a new CompanyIndustry with this data.
+     */
+    create: XOR<CompanyIndustryCreateInput, CompanyIndustryUncheckedCreateInput>
+    /**
+     * In case the CompanyIndustry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CompanyIndustryUpdateInput, CompanyIndustryUncheckedUpdateInput>
+  }
+
+  /**
+   * CompanyIndustry delete
+   */
+  export type CompanyIndustryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+    /**
+     * Filter which CompanyIndustry to delete.
+     */
+    where: CompanyIndustryWhereUniqueInput
+  }
+
+  /**
+   * CompanyIndustry deleteMany
+   */
+  export type CompanyIndustryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CompanyIndustries to delete
+     */
+    where?: CompanyIndustryWhereInput
+    /**
+     * Limit how many CompanyIndustries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanyIndustry without action
+   */
+  export type CompanyIndustryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanyIndustry
+     */
+    select?: CompanyIndustrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanyIndustry
+     */
+    omit?: CompanyIndustryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CompanyIndustryInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -12036,6 +14442,24 @@ export namespace Prisma {
   };
 
   export type CompanyImageScalarFieldEnum = (typeof CompanyImageScalarFieldEnum)[keyof typeof CompanyImageScalarFieldEnum]
+
+
+  export const IndustryScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    description: 'description'
+  };
+
+  export type IndustryScalarFieldEnum = (typeof IndustryScalarFieldEnum)[keyof typeof IndustryScalarFieldEnum]
+
+
+  export const CompanyIndustryScalarFieldEnum: {
+    companyId: 'companyId',
+    industryId: 'industryId'
+  };
+
+  export type CompanyIndustryScalarFieldEnum = (typeof CompanyIndustryScalarFieldEnum)[keyof typeof CompanyIndustryScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12624,6 +15048,7 @@ export namespace Prisma {
     mapLink?: StringNullableFilter<"Company"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     images?: CompanyImageListRelationFilter
+    industries?: CompanyIndustryListRelationFilter
   }
 
   export type CompanyOrderByWithRelationInput = {
@@ -12640,6 +15065,7 @@ export namespace Prisma {
     mapLink?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
     images?: CompanyImageOrderByRelationAggregateInput
+    industries?: CompanyIndustryOrderByRelationAggregateInput
   }
 
   export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -12659,6 +15085,7 @@ export namespace Prisma {
     mapLink?: StringNullableFilter<"Company"> | string | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     images?: CompanyImageListRelationFilter
+    industries?: CompanyIndustryListRelationFilter
   }, "id">
 
   export type CompanyOrderByWithAggregationInput = {
@@ -12742,6 +15169,104 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"CompanyImage"> | number
     companyId?: IntWithAggregatesFilter<"CompanyImage"> | number
     imageUrl?: StringWithAggregatesFilter<"CompanyImage"> | string
+  }
+
+  export type IndustryWhereInput = {
+    AND?: IndustryWhereInput | IndustryWhereInput[]
+    OR?: IndustryWhereInput[]
+    NOT?: IndustryWhereInput | IndustryWhereInput[]
+    id?: IntFilter<"Industry"> | number
+    name?: StringFilter<"Industry"> | string
+    slug?: StringFilter<"Industry"> | string
+    description?: StringFilter<"Industry"> | string
+    industries?: CompanyIndustryListRelationFilter
+  }
+
+  export type IndustryOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    industries?: CompanyIndustryOrderByRelationAggregateInput
+  }
+
+  export type IndustryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    slug?: string
+    AND?: IndustryWhereInput | IndustryWhereInput[]
+    OR?: IndustryWhereInput[]
+    NOT?: IndustryWhereInput | IndustryWhereInput[]
+    name?: StringFilter<"Industry"> | string
+    description?: StringFilter<"Industry"> | string
+    industries?: CompanyIndustryListRelationFilter
+  }, "id" | "slug">
+
+  export type IndustryOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    _count?: IndustryCountOrderByAggregateInput
+    _avg?: IndustryAvgOrderByAggregateInput
+    _max?: IndustryMaxOrderByAggregateInput
+    _min?: IndustryMinOrderByAggregateInput
+    _sum?: IndustrySumOrderByAggregateInput
+  }
+
+  export type IndustryScalarWhereWithAggregatesInput = {
+    AND?: IndustryScalarWhereWithAggregatesInput | IndustryScalarWhereWithAggregatesInput[]
+    OR?: IndustryScalarWhereWithAggregatesInput[]
+    NOT?: IndustryScalarWhereWithAggregatesInput | IndustryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Industry"> | number
+    name?: StringWithAggregatesFilter<"Industry"> | string
+    slug?: StringWithAggregatesFilter<"Industry"> | string
+    description?: StringWithAggregatesFilter<"Industry"> | string
+  }
+
+  export type CompanyIndustryWhereInput = {
+    AND?: CompanyIndustryWhereInput | CompanyIndustryWhereInput[]
+    OR?: CompanyIndustryWhereInput[]
+    NOT?: CompanyIndustryWhereInput | CompanyIndustryWhereInput[]
+    companyId?: IntFilter<"CompanyIndustry"> | number
+    industryId?: IntFilter<"CompanyIndustry"> | number
+    company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+    industry?: XOR<IndustryScalarRelationFilter, IndustryWhereInput>
+  }
+
+  export type CompanyIndustryOrderByWithRelationInput = {
+    companyId?: SortOrder
+    industryId?: SortOrder
+    company?: CompanyOrderByWithRelationInput
+    industry?: IndustryOrderByWithRelationInput
+  }
+
+  export type CompanyIndustryWhereUniqueInput = Prisma.AtLeast<{
+    companyId_industryId?: CompanyIndustryCompanyIdIndustryIdCompoundUniqueInput
+    AND?: CompanyIndustryWhereInput | CompanyIndustryWhereInput[]
+    OR?: CompanyIndustryWhereInput[]
+    NOT?: CompanyIndustryWhereInput | CompanyIndustryWhereInput[]
+    companyId?: IntFilter<"CompanyIndustry"> | number
+    industryId?: IntFilter<"CompanyIndustry"> | number
+    company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+    industry?: XOR<IndustryScalarRelationFilter, IndustryWhereInput>
+  }, "companyId_industryId">
+
+  export type CompanyIndustryOrderByWithAggregationInput = {
+    companyId?: SortOrder
+    industryId?: SortOrder
+    _count?: CompanyIndustryCountOrderByAggregateInput
+    _avg?: CompanyIndustryAvgOrderByAggregateInput
+    _max?: CompanyIndustryMaxOrderByAggregateInput
+    _min?: CompanyIndustryMinOrderByAggregateInput
+    _sum?: CompanyIndustrySumOrderByAggregateInput
+  }
+
+  export type CompanyIndustryScalarWhereWithAggregatesInput = {
+    AND?: CompanyIndustryScalarWhereWithAggregatesInput | CompanyIndustryScalarWhereWithAggregatesInput[]
+    OR?: CompanyIndustryScalarWhereWithAggregatesInput[]
+    NOT?: CompanyIndustryScalarWhereWithAggregatesInput | CompanyIndustryScalarWhereWithAggregatesInput[]
+    companyId?: IntWithAggregatesFilter<"CompanyIndustry"> | number
+    industryId?: IntWithAggregatesFilter<"CompanyIndustry"> | number
   }
 
   export type UserCreateInput = {
@@ -13179,6 +15704,7 @@ export namespace Prisma {
     mapLink?: string | null
     user: UserCreateNestedOneWithoutCompaniesInput
     images?: CompanyImageCreateNestedManyWithoutCompanyInput
+    industries?: CompanyIndustryCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateInput = {
@@ -13194,6 +15720,7 @@ export namespace Prisma {
     isApproved?: boolean
     mapLink?: string | null
     images?: CompanyImageUncheckedCreateNestedManyWithoutCompanyInput
+    industries?: CompanyIndustryUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUpdateInput = {
@@ -13208,6 +15735,7 @@ export namespace Prisma {
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutCompaniesNestedInput
     images?: CompanyImageUpdateManyWithoutCompanyNestedInput
+    industries?: CompanyIndustryUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateInput = {
@@ -13223,6 +15751,7 @@ export namespace Prisma {
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     images?: CompanyImageUncheckedUpdateManyWithoutCompanyNestedInput
+    industries?: CompanyIndustryUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyCreateManyInput = {
@@ -13301,6 +15830,90 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     companyId?: IntFieldUpdateOperationsInput | number
     imageUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IndustryCreateInput = {
+    name: string
+    slug: string
+    description: string
+    industries?: CompanyIndustryCreateNestedManyWithoutIndustryInput
+  }
+
+  export type IndustryUncheckedCreateInput = {
+    id?: number
+    name: string
+    slug: string
+    description: string
+    industries?: CompanyIndustryUncheckedCreateNestedManyWithoutIndustryInput
+  }
+
+  export type IndustryUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    industries?: CompanyIndustryUpdateManyWithoutIndustryNestedInput
+  }
+
+  export type IndustryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    industries?: CompanyIndustryUncheckedUpdateManyWithoutIndustryNestedInput
+  }
+
+  export type IndustryCreateManyInput = {
+    id?: number
+    name: string
+    slug: string
+    description: string
+  }
+
+  export type IndustryUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IndustryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompanyIndustryCreateInput = {
+    company: CompanyCreateNestedOneWithoutIndustriesInput
+    industry: IndustryCreateNestedOneWithoutIndustriesInput
+  }
+
+  export type CompanyIndustryUncheckedCreateInput = {
+    companyId: number
+    industryId: number
+  }
+
+  export type CompanyIndustryUpdateInput = {
+    company?: CompanyUpdateOneRequiredWithoutIndustriesNestedInput
+    industry?: IndustryUpdateOneRequiredWithoutIndustriesNestedInput
+  }
+
+  export type CompanyIndustryUncheckedUpdateInput = {
+    companyId?: IntFieldUpdateOperationsInput | number
+    industryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompanyIndustryCreateManyInput = {
+    companyId: number
+    industryId: number
+  }
+
+  export type CompanyIndustryUpdateManyMutationInput = {
+
+  }
+
+  export type CompanyIndustryUncheckedUpdateManyInput = {
+    companyId?: IntFieldUpdateOperationsInput | number
+    industryId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -13831,7 +16444,17 @@ export namespace Prisma {
     none?: CompanyImageWhereInput
   }
 
+  export type CompanyIndustryListRelationFilter = {
+    every?: CompanyIndustryWhereInput
+    some?: CompanyIndustryWhereInput
+    none?: CompanyIndustryWhereInput
+  }
+
   export type CompanyImageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CompanyIndustryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13922,6 +16545,70 @@ export namespace Prisma {
   export type CompanyImageSumOrderByAggregateInput = {
     id?: SortOrder
     companyId?: SortOrder
+  }
+
+  export type IndustryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type IndustryAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IndustryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type IndustryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+  }
+
+  export type IndustrySumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type IndustryScalarRelationFilter = {
+    is?: IndustryWhereInput
+    isNot?: IndustryWhereInput
+  }
+
+  export type CompanyIndustryCompanyIdIndustryIdCompoundUniqueInput = {
+    companyId: number
+    industryId: number
+  }
+
+  export type CompanyIndustryCountOrderByAggregateInput = {
+    companyId?: SortOrder
+    industryId?: SortOrder
+  }
+
+  export type CompanyIndustryAvgOrderByAggregateInput = {
+    companyId?: SortOrder
+    industryId?: SortOrder
+  }
+
+  export type CompanyIndustryMaxOrderByAggregateInput = {
+    companyId?: SortOrder
+    industryId?: SortOrder
+  }
+
+  export type CompanyIndustryMinOrderByAggregateInput = {
+    companyId?: SortOrder
+    industryId?: SortOrder
+  }
+
+  export type CompanyIndustrySumOrderByAggregateInput = {
+    companyId?: SortOrder
+    industryId?: SortOrder
   }
 
   export type CandidateProfileCreateNestedOneWithoutUserInput = {
@@ -14345,11 +17032,25 @@ export namespace Prisma {
     connect?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
   }
 
+  export type CompanyIndustryCreateNestedManyWithoutCompanyInput = {
+    create?: XOR<CompanyIndustryCreateWithoutCompanyInput, CompanyIndustryUncheckedCreateWithoutCompanyInput> | CompanyIndustryCreateWithoutCompanyInput[] | CompanyIndustryUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: CompanyIndustryCreateOrConnectWithoutCompanyInput | CompanyIndustryCreateOrConnectWithoutCompanyInput[]
+    createMany?: CompanyIndustryCreateManyCompanyInputEnvelope
+    connect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+  }
+
   export type CompanyImageUncheckedCreateNestedManyWithoutCompanyInput = {
     create?: XOR<CompanyImageCreateWithoutCompanyInput, CompanyImageUncheckedCreateWithoutCompanyInput> | CompanyImageCreateWithoutCompanyInput[] | CompanyImageUncheckedCreateWithoutCompanyInput[]
     connectOrCreate?: CompanyImageCreateOrConnectWithoutCompanyInput | CompanyImageCreateOrConnectWithoutCompanyInput[]
     createMany?: CompanyImageCreateManyCompanyInputEnvelope
     connect?: CompanyImageWhereUniqueInput | CompanyImageWhereUniqueInput[]
+  }
+
+  export type CompanyIndustryUncheckedCreateNestedManyWithoutCompanyInput = {
+    create?: XOR<CompanyIndustryCreateWithoutCompanyInput, CompanyIndustryUncheckedCreateWithoutCompanyInput> | CompanyIndustryCreateWithoutCompanyInput[] | CompanyIndustryUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: CompanyIndustryCreateOrConnectWithoutCompanyInput | CompanyIndustryCreateOrConnectWithoutCompanyInput[]
+    createMany?: CompanyIndustryCreateManyCompanyInputEnvelope
+    connect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutCompaniesNestedInput = {
@@ -14374,6 +17075,20 @@ export namespace Prisma {
     deleteMany?: CompanyImageScalarWhereInput | CompanyImageScalarWhereInput[]
   }
 
+  export type CompanyIndustryUpdateManyWithoutCompanyNestedInput = {
+    create?: XOR<CompanyIndustryCreateWithoutCompanyInput, CompanyIndustryUncheckedCreateWithoutCompanyInput> | CompanyIndustryCreateWithoutCompanyInput[] | CompanyIndustryUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: CompanyIndustryCreateOrConnectWithoutCompanyInput | CompanyIndustryCreateOrConnectWithoutCompanyInput[]
+    upsert?: CompanyIndustryUpsertWithWhereUniqueWithoutCompanyInput | CompanyIndustryUpsertWithWhereUniqueWithoutCompanyInput[]
+    createMany?: CompanyIndustryCreateManyCompanyInputEnvelope
+    set?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    disconnect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    delete?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    connect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    update?: CompanyIndustryUpdateWithWhereUniqueWithoutCompanyInput | CompanyIndustryUpdateWithWhereUniqueWithoutCompanyInput[]
+    updateMany?: CompanyIndustryUpdateManyWithWhereWithoutCompanyInput | CompanyIndustryUpdateManyWithWhereWithoutCompanyInput[]
+    deleteMany?: CompanyIndustryScalarWhereInput | CompanyIndustryScalarWhereInput[]
+  }
+
   export type CompanyImageUncheckedUpdateManyWithoutCompanyNestedInput = {
     create?: XOR<CompanyImageCreateWithoutCompanyInput, CompanyImageUncheckedCreateWithoutCompanyInput> | CompanyImageCreateWithoutCompanyInput[] | CompanyImageUncheckedCreateWithoutCompanyInput[]
     connectOrCreate?: CompanyImageCreateOrConnectWithoutCompanyInput | CompanyImageCreateOrConnectWithoutCompanyInput[]
@@ -14388,6 +17103,20 @@ export namespace Prisma {
     deleteMany?: CompanyImageScalarWhereInput | CompanyImageScalarWhereInput[]
   }
 
+  export type CompanyIndustryUncheckedUpdateManyWithoutCompanyNestedInput = {
+    create?: XOR<CompanyIndustryCreateWithoutCompanyInput, CompanyIndustryUncheckedCreateWithoutCompanyInput> | CompanyIndustryCreateWithoutCompanyInput[] | CompanyIndustryUncheckedCreateWithoutCompanyInput[]
+    connectOrCreate?: CompanyIndustryCreateOrConnectWithoutCompanyInput | CompanyIndustryCreateOrConnectWithoutCompanyInput[]
+    upsert?: CompanyIndustryUpsertWithWhereUniqueWithoutCompanyInput | CompanyIndustryUpsertWithWhereUniqueWithoutCompanyInput[]
+    createMany?: CompanyIndustryCreateManyCompanyInputEnvelope
+    set?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    disconnect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    delete?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    connect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    update?: CompanyIndustryUpdateWithWhereUniqueWithoutCompanyInput | CompanyIndustryUpdateWithWhereUniqueWithoutCompanyInput[]
+    updateMany?: CompanyIndustryUpdateManyWithWhereWithoutCompanyInput | CompanyIndustryUpdateManyWithWhereWithoutCompanyInput[]
+    deleteMany?: CompanyIndustryScalarWhereInput | CompanyIndustryScalarWhereInput[]
+  }
+
   export type CompanyCreateNestedOneWithoutImagesInput = {
     create?: XOR<CompanyCreateWithoutImagesInput, CompanyUncheckedCreateWithoutImagesInput>
     connectOrCreate?: CompanyCreateOrConnectWithoutImagesInput
@@ -14400,6 +17129,76 @@ export namespace Prisma {
     upsert?: CompanyUpsertWithoutImagesInput
     connect?: CompanyWhereUniqueInput
     update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutImagesInput, CompanyUpdateWithoutImagesInput>, CompanyUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type CompanyIndustryCreateNestedManyWithoutIndustryInput = {
+    create?: XOR<CompanyIndustryCreateWithoutIndustryInput, CompanyIndustryUncheckedCreateWithoutIndustryInput> | CompanyIndustryCreateWithoutIndustryInput[] | CompanyIndustryUncheckedCreateWithoutIndustryInput[]
+    connectOrCreate?: CompanyIndustryCreateOrConnectWithoutIndustryInput | CompanyIndustryCreateOrConnectWithoutIndustryInput[]
+    createMany?: CompanyIndustryCreateManyIndustryInputEnvelope
+    connect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+  }
+
+  export type CompanyIndustryUncheckedCreateNestedManyWithoutIndustryInput = {
+    create?: XOR<CompanyIndustryCreateWithoutIndustryInput, CompanyIndustryUncheckedCreateWithoutIndustryInput> | CompanyIndustryCreateWithoutIndustryInput[] | CompanyIndustryUncheckedCreateWithoutIndustryInput[]
+    connectOrCreate?: CompanyIndustryCreateOrConnectWithoutIndustryInput | CompanyIndustryCreateOrConnectWithoutIndustryInput[]
+    createMany?: CompanyIndustryCreateManyIndustryInputEnvelope
+    connect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+  }
+
+  export type CompanyIndustryUpdateManyWithoutIndustryNestedInput = {
+    create?: XOR<CompanyIndustryCreateWithoutIndustryInput, CompanyIndustryUncheckedCreateWithoutIndustryInput> | CompanyIndustryCreateWithoutIndustryInput[] | CompanyIndustryUncheckedCreateWithoutIndustryInput[]
+    connectOrCreate?: CompanyIndustryCreateOrConnectWithoutIndustryInput | CompanyIndustryCreateOrConnectWithoutIndustryInput[]
+    upsert?: CompanyIndustryUpsertWithWhereUniqueWithoutIndustryInput | CompanyIndustryUpsertWithWhereUniqueWithoutIndustryInput[]
+    createMany?: CompanyIndustryCreateManyIndustryInputEnvelope
+    set?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    disconnect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    delete?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    connect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    update?: CompanyIndustryUpdateWithWhereUniqueWithoutIndustryInput | CompanyIndustryUpdateWithWhereUniqueWithoutIndustryInput[]
+    updateMany?: CompanyIndustryUpdateManyWithWhereWithoutIndustryInput | CompanyIndustryUpdateManyWithWhereWithoutIndustryInput[]
+    deleteMany?: CompanyIndustryScalarWhereInput | CompanyIndustryScalarWhereInput[]
+  }
+
+  export type CompanyIndustryUncheckedUpdateManyWithoutIndustryNestedInput = {
+    create?: XOR<CompanyIndustryCreateWithoutIndustryInput, CompanyIndustryUncheckedCreateWithoutIndustryInput> | CompanyIndustryCreateWithoutIndustryInput[] | CompanyIndustryUncheckedCreateWithoutIndustryInput[]
+    connectOrCreate?: CompanyIndustryCreateOrConnectWithoutIndustryInput | CompanyIndustryCreateOrConnectWithoutIndustryInput[]
+    upsert?: CompanyIndustryUpsertWithWhereUniqueWithoutIndustryInput | CompanyIndustryUpsertWithWhereUniqueWithoutIndustryInput[]
+    createMany?: CompanyIndustryCreateManyIndustryInputEnvelope
+    set?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    disconnect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    delete?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    connect?: CompanyIndustryWhereUniqueInput | CompanyIndustryWhereUniqueInput[]
+    update?: CompanyIndustryUpdateWithWhereUniqueWithoutIndustryInput | CompanyIndustryUpdateWithWhereUniqueWithoutIndustryInput[]
+    updateMany?: CompanyIndustryUpdateManyWithWhereWithoutIndustryInput | CompanyIndustryUpdateManyWithWhereWithoutIndustryInput[]
+    deleteMany?: CompanyIndustryScalarWhereInput | CompanyIndustryScalarWhereInput[]
+  }
+
+  export type CompanyCreateNestedOneWithoutIndustriesInput = {
+    create?: XOR<CompanyCreateWithoutIndustriesInput, CompanyUncheckedCreateWithoutIndustriesInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutIndustriesInput
+    connect?: CompanyWhereUniqueInput
+  }
+
+  export type IndustryCreateNestedOneWithoutIndustriesInput = {
+    create?: XOR<IndustryCreateWithoutIndustriesInput, IndustryUncheckedCreateWithoutIndustriesInput>
+    connectOrCreate?: IndustryCreateOrConnectWithoutIndustriesInput
+    connect?: IndustryWhereUniqueInput
+  }
+
+  export type CompanyUpdateOneRequiredWithoutIndustriesNestedInput = {
+    create?: XOR<CompanyCreateWithoutIndustriesInput, CompanyUncheckedCreateWithoutIndustriesInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutIndustriesInput
+    upsert?: CompanyUpsertWithoutIndustriesInput
+    connect?: CompanyWhereUniqueInput
+    update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutIndustriesInput, CompanyUpdateWithoutIndustriesInput>, CompanyUncheckedUpdateWithoutIndustriesInput>
+  }
+
+  export type IndustryUpdateOneRequiredWithoutIndustriesNestedInput = {
+    create?: XOR<IndustryCreateWithoutIndustriesInput, IndustryUncheckedCreateWithoutIndustriesInput>
+    connectOrCreate?: IndustryCreateOrConnectWithoutIndustriesInput
+    upsert?: IndustryUpsertWithoutIndustriesInput
+    connect?: IndustryWhereUniqueInput
+    update?: XOR<XOR<IndustryUpdateToOneWithWhereWithoutIndustriesInput, IndustryUpdateWithoutIndustriesInput>, IndustryUncheckedUpdateWithoutIndustriesInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -14672,6 +17471,7 @@ export namespace Prisma {
     isApproved?: boolean
     mapLink?: string | null
     images?: CompanyImageCreateNestedManyWithoutCompanyInput
+    industries?: CompanyIndustryCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateWithoutUserInput = {
@@ -14686,6 +17486,7 @@ export namespace Prisma {
     isApproved?: boolean
     mapLink?: string | null
     images?: CompanyImageUncheckedCreateNestedManyWithoutCompanyInput
+    industries?: CompanyIndustryUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyCreateOrConnectWithoutUserInput = {
@@ -15400,6 +18201,24 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CompanyIndustryCreateWithoutCompanyInput = {
+    industry: IndustryCreateNestedOneWithoutIndustriesInput
+  }
+
+  export type CompanyIndustryUncheckedCreateWithoutCompanyInput = {
+    industryId: number
+  }
+
+  export type CompanyIndustryCreateOrConnectWithoutCompanyInput = {
+    where: CompanyIndustryWhereUniqueInput
+    create: XOR<CompanyIndustryCreateWithoutCompanyInput, CompanyIndustryUncheckedCreateWithoutCompanyInput>
+  }
+
+  export type CompanyIndustryCreateManyCompanyInputEnvelope = {
+    data: CompanyIndustryCreateManyCompanyInput | CompanyIndustryCreateManyCompanyInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutCompaniesInput = {
     update: XOR<UserUpdateWithoutCompaniesInput, UserUncheckedUpdateWithoutCompaniesInput>
     create: XOR<UserCreateWithoutCompaniesInput, UserUncheckedCreateWithoutCompaniesInput>
@@ -15455,6 +18274,30 @@ export namespace Prisma {
     imageUrl?: StringFilter<"CompanyImage"> | string
   }
 
+  export type CompanyIndustryUpsertWithWhereUniqueWithoutCompanyInput = {
+    where: CompanyIndustryWhereUniqueInput
+    update: XOR<CompanyIndustryUpdateWithoutCompanyInput, CompanyIndustryUncheckedUpdateWithoutCompanyInput>
+    create: XOR<CompanyIndustryCreateWithoutCompanyInput, CompanyIndustryUncheckedCreateWithoutCompanyInput>
+  }
+
+  export type CompanyIndustryUpdateWithWhereUniqueWithoutCompanyInput = {
+    where: CompanyIndustryWhereUniqueInput
+    data: XOR<CompanyIndustryUpdateWithoutCompanyInput, CompanyIndustryUncheckedUpdateWithoutCompanyInput>
+  }
+
+  export type CompanyIndustryUpdateManyWithWhereWithoutCompanyInput = {
+    where: CompanyIndustryScalarWhereInput
+    data: XOR<CompanyIndustryUpdateManyMutationInput, CompanyIndustryUncheckedUpdateManyWithoutCompanyInput>
+  }
+
+  export type CompanyIndustryScalarWhereInput = {
+    AND?: CompanyIndustryScalarWhereInput | CompanyIndustryScalarWhereInput[]
+    OR?: CompanyIndustryScalarWhereInput[]
+    NOT?: CompanyIndustryScalarWhereInput | CompanyIndustryScalarWhereInput[]
+    companyId?: IntFilter<"CompanyIndustry"> | number
+    industryId?: IntFilter<"CompanyIndustry"> | number
+  }
+
   export type CompanyCreateWithoutImagesInput = {
     name: string
     description: string
@@ -15466,6 +18309,7 @@ export namespace Prisma {
     isApproved?: boolean
     mapLink?: string | null
     user: UserCreateNestedOneWithoutCompaniesInput
+    industries?: CompanyIndustryCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyUncheckedCreateWithoutImagesInput = {
@@ -15480,6 +18324,7 @@ export namespace Prisma {
     websiteUrl?: string | null
     isApproved?: boolean
     mapLink?: string | null
+    industries?: CompanyIndustryUncheckedCreateNestedManyWithoutCompanyInput
   }
 
   export type CompanyCreateOrConnectWithoutImagesInput = {
@@ -15509,6 +18354,7 @@ export namespace Prisma {
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     user?: UserUpdateOneRequiredWithoutCompaniesNestedInput
+    industries?: CompanyIndustryUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateWithoutImagesInput = {
@@ -15523,6 +18369,157 @@ export namespace Prisma {
     websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
+    industries?: CompanyIndustryUncheckedUpdateManyWithoutCompanyNestedInput
+  }
+
+  export type CompanyIndustryCreateWithoutIndustryInput = {
+    company: CompanyCreateNestedOneWithoutIndustriesInput
+  }
+
+  export type CompanyIndustryUncheckedCreateWithoutIndustryInput = {
+    companyId: number
+  }
+
+  export type CompanyIndustryCreateOrConnectWithoutIndustryInput = {
+    where: CompanyIndustryWhereUniqueInput
+    create: XOR<CompanyIndustryCreateWithoutIndustryInput, CompanyIndustryUncheckedCreateWithoutIndustryInput>
+  }
+
+  export type CompanyIndustryCreateManyIndustryInputEnvelope = {
+    data: CompanyIndustryCreateManyIndustryInput | CompanyIndustryCreateManyIndustryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CompanyIndustryUpsertWithWhereUniqueWithoutIndustryInput = {
+    where: CompanyIndustryWhereUniqueInput
+    update: XOR<CompanyIndustryUpdateWithoutIndustryInput, CompanyIndustryUncheckedUpdateWithoutIndustryInput>
+    create: XOR<CompanyIndustryCreateWithoutIndustryInput, CompanyIndustryUncheckedCreateWithoutIndustryInput>
+  }
+
+  export type CompanyIndustryUpdateWithWhereUniqueWithoutIndustryInput = {
+    where: CompanyIndustryWhereUniqueInput
+    data: XOR<CompanyIndustryUpdateWithoutIndustryInput, CompanyIndustryUncheckedUpdateWithoutIndustryInput>
+  }
+
+  export type CompanyIndustryUpdateManyWithWhereWithoutIndustryInput = {
+    where: CompanyIndustryScalarWhereInput
+    data: XOR<CompanyIndustryUpdateManyMutationInput, CompanyIndustryUncheckedUpdateManyWithoutIndustryInput>
+  }
+
+  export type CompanyCreateWithoutIndustriesInput = {
+    name: string
+    description: string
+    address: string
+    teamSize: number
+    estDate: Date | string
+    views?: number
+    websiteUrl?: string | null
+    isApproved?: boolean
+    mapLink?: string | null
+    user: UserCreateNestedOneWithoutCompaniesInput
+    images?: CompanyImageCreateNestedManyWithoutCompanyInput
+  }
+
+  export type CompanyUncheckedCreateWithoutIndustriesInput = {
+    id?: number
+    userId: number
+    name: string
+    description: string
+    address: string
+    teamSize: number
+    estDate: Date | string
+    views?: number
+    websiteUrl?: string | null
+    isApproved?: boolean
+    mapLink?: string | null
+    images?: CompanyImageUncheckedCreateNestedManyWithoutCompanyInput
+  }
+
+  export type CompanyCreateOrConnectWithoutIndustriesInput = {
+    where: CompanyWhereUniqueInput
+    create: XOR<CompanyCreateWithoutIndustriesInput, CompanyUncheckedCreateWithoutIndustriesInput>
+  }
+
+  export type IndustryCreateWithoutIndustriesInput = {
+    name: string
+    slug: string
+    description: string
+  }
+
+  export type IndustryUncheckedCreateWithoutIndustriesInput = {
+    id?: number
+    name: string
+    slug: string
+    description: string
+  }
+
+  export type IndustryCreateOrConnectWithoutIndustriesInput = {
+    where: IndustryWhereUniqueInput
+    create: XOR<IndustryCreateWithoutIndustriesInput, IndustryUncheckedCreateWithoutIndustriesInput>
+  }
+
+  export type CompanyUpsertWithoutIndustriesInput = {
+    update: XOR<CompanyUpdateWithoutIndustriesInput, CompanyUncheckedUpdateWithoutIndustriesInput>
+    create: XOR<CompanyCreateWithoutIndustriesInput, CompanyUncheckedCreateWithoutIndustriesInput>
+    where?: CompanyWhereInput
+  }
+
+  export type CompanyUpdateToOneWithWhereWithoutIndustriesInput = {
+    where?: CompanyWhereInput
+    data: XOR<CompanyUpdateWithoutIndustriesInput, CompanyUncheckedUpdateWithoutIndustriesInput>
+  }
+
+  export type CompanyUpdateWithoutIndustriesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    teamSize?: IntFieldUpdateOperationsInput | number
+    estDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    mapLink?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutCompaniesNestedInput
+    images?: CompanyImageUpdateManyWithoutCompanyNestedInput
+  }
+
+  export type CompanyUncheckedUpdateWithoutIndustriesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    teamSize?: IntFieldUpdateOperationsInput | number
+    estDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    websiteUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    mapLink?: NullableStringFieldUpdateOperationsInput | string | null
+    images?: CompanyImageUncheckedUpdateManyWithoutCompanyNestedInput
+  }
+
+  export type IndustryUpsertWithoutIndustriesInput = {
+    update: XOR<IndustryUpdateWithoutIndustriesInput, IndustryUncheckedUpdateWithoutIndustriesInput>
+    create: XOR<IndustryCreateWithoutIndustriesInput, IndustryUncheckedCreateWithoutIndustriesInput>
+    where?: IndustryWhereInput
+  }
+
+  export type IndustryUpdateToOneWithWhereWithoutIndustriesInput = {
+    where?: IndustryWhereInput
+    data: XOR<IndustryUpdateWithoutIndustriesInput, IndustryUncheckedUpdateWithoutIndustriesInput>
+  }
+
+  export type IndustryUpdateWithoutIndustriesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type IndustryUncheckedUpdateWithoutIndustriesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
   }
 
   export type CompanyCreateManyUserInput = {
@@ -15549,6 +18546,7 @@ export namespace Prisma {
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     images?: CompanyImageUpdateManyWithoutCompanyNestedInput
+    industries?: CompanyIndustryUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateWithoutUserInput = {
@@ -15563,6 +18561,7 @@ export namespace Prisma {
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     mapLink?: NullableStringFieldUpdateOperationsInput | string | null
     images?: CompanyImageUncheckedUpdateManyWithoutCompanyNestedInput
+    industries?: CompanyIndustryUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
   export type CompanyUncheckedUpdateManyWithoutUserInput = {
@@ -15726,6 +18725,10 @@ export namespace Prisma {
     imageUrl: string
   }
 
+  export type CompanyIndustryCreateManyCompanyInput = {
+    industryId: number
+  }
+
   export type CompanyImageUpdateWithoutCompanyInput = {
     imageUrl?: StringFieldUpdateOperationsInput | string
   }
@@ -15738,6 +18741,34 @@ export namespace Prisma {
   export type CompanyImageUncheckedUpdateManyWithoutCompanyInput = {
     id?: IntFieldUpdateOperationsInput | number
     imageUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompanyIndustryUpdateWithoutCompanyInput = {
+    industry?: IndustryUpdateOneRequiredWithoutIndustriesNestedInput
+  }
+
+  export type CompanyIndustryUncheckedUpdateWithoutCompanyInput = {
+    industryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompanyIndustryUncheckedUpdateManyWithoutCompanyInput = {
+    industryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompanyIndustryCreateManyIndustryInput = {
+    companyId: number
+  }
+
+  export type CompanyIndustryUpdateWithoutIndustryInput = {
+    company?: CompanyUpdateOneRequiredWithoutIndustriesNestedInput
+  }
+
+  export type CompanyIndustryUncheckedUpdateWithoutIndustryInput = {
+    companyId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CompanyIndustryUncheckedUpdateManyWithoutIndustryInput = {
+    companyId?: IntFieldUpdateOperationsInput | number
   }
 
 

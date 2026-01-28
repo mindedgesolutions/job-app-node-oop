@@ -3,7 +3,7 @@ import candidateEducationRoute from '@/features/candidate-profile/routes/candida
 import candidateExperienceRoute from '@/features/candidate-profile/routes/candidate-experience.route';
 import candidateLanguageRoute from '@/features/candidate-profile/routes/candidate-language.route';
 import companyRoute from '@/company/routes/company.route';
-import companyImageRoute from '@/features/company/routes/company.image.route';
+import companyImageRoute from '@/features/company/routes/company-image.route';
 import authRoute from '@/user/routes/auth.route';
 import userRoute from '@/user/routes/user.route';
 import { Application } from 'express';
