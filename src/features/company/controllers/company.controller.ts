@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { companyService } from '@/company/services/company.service';
 import { StatusCodes } from 'http-status-codes';
-import { skip } from 'generated/prisma/runtime/client';
 
 class CompanyController {
   public async create(req: Request, res: Response) {

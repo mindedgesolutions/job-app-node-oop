@@ -18,7 +18,7 @@ class CompanyIndustryService {
     companyId: number,
     currentUser: UserPayload,
   ) {
-    const company = await companyService.getCompanyByUserId(
+    const company = await companyService.companyExistsByCompanyIdUserId(
       Number(currentUser.id),
       companyId,
     );

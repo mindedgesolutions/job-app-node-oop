@@ -218,6 +218,22 @@ exports.Prisma.JobRoleScalarFieldEnum = {
   description: 'description'
 };
 
+exports.Prisma.JobScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  userId: 'userId',
+  jobRoleId: 'jobRoleId',
+  title: 'title',
+  description: 'description',
+  slug: 'slug',
+  status: 'status',
+  minSalary: 'minSalary',
+  maxSalary: 'maxSalary',
+  totalViews: 'totalViews',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -250,6 +266,13 @@ exports.Level = exports.$Enums.Level = {
   ADVANCED: 'ADVANCED'
 };
 
+exports.JobStatus = exports.$Enums.JobStatus = {
+  PENDING: 'PENDING',
+  ACTIVE: 'ACTIVE',
+  EXPIRED: 'EXPIRED',
+  REJECTED: 'REJECTED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   CandidateProfile: 'CandidateProfile',
@@ -262,7 +285,8 @@ exports.Prisma.ModelName = {
   CompanyImage: 'CompanyImage',
   Industry: 'Industry',
   CompanyIndustry: 'CompanyIndustry',
-  JobRole: 'JobRole'
+  JobRole: 'JobRole',
+  Job: 'Job'
 };
 
 /**

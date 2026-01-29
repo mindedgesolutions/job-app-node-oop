@@ -9,10 +9,20 @@ import { getPaginationAndFilters } from '@/globals/helpers/pagination.helper';
 import fs from 'fs';
 
 class CompanyService {
-  public async getCompanyByUserId(
+  public async getCompanyByUserId(userId: number): Promise<Company | null> {
+    const company = await prisma.company.findFirst({
+      where: { userId: Number(userId) },
+    });
+
+    return company;
+  }
+
+  // --------------------------------
+
+  public async companyExistsByCompanyIdUserId(
     userId: number,
     companyId: number,
-  ): Promise<boolean> {
+  ) {
     const check = await prisma.company.findFirst({
       where: { userId: Number(userId), id: companyId },
     });
@@ -128,7 +138,7 @@ class CompanyService {
       mapLink,
     } = requestBody;
 
-    const check = await this.getCompanyByUserId(
+    const check = await this.companyExistsByCompanyIdUserId(
       Number(currentUser.id),
       companyId,
     );
@@ -160,7 +170,7 @@ class CompanyService {
     companyId: number,
     currentUser: UserPayload,
   ): Promise<void> {
-    const check = await this.getCompanyByUserId(
+    const check = await this.companyExistsByCompanyIdUserId(
       Number(currentUser.id),
       companyId,
     );
