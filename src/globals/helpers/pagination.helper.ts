@@ -13,24 +13,33 @@ export function pagination(total: number, page: number, limit: number) {
 export async function getPaginationAndFilters({
   page = 1,
   limit = 10,
-  filter,
-  filterFields = [],
+  quickFilter,
+  quickFilterFields = [],
+  filters = {},
   baseWhere = {},
   model,
+  sortBy = {},
 }: any) {
-  const normalizedFilter = filter?.trim();
+  const normalizedFilter = quickFilter?.trim();
+
+  const cleanedFilters = Object.fromEntries(
+    Object.entries(filters).filter(
+      ([_, value]) => value !== '' && value !== undefined && value !== null,
+    ),
+  );
 
   const where = normalizedFilter
     ? {
         ...baseWhere,
-        OR: filterFields.map((field: string) => ({
+        ...cleanedFilters,
+        OR: quickFilterFields.map((field: string) => ({
           [field]: {
             contains: normalizedFilter,
             mode: Prisma.QueryMode.insensitive,
           },
         })),
       }
-    : baseWhere;
+    : { ...baseWhere, ...cleanedFilters };
 
   const safeLimit = Math.min(Math.max(limit, 1), 100);
 
@@ -42,6 +51,7 @@ export async function getPaginationAndFilters({
 
   const data = await (prisma as any)[model].findMany({
     where,
+    orderBy: sortBy,
     skip: safeSkip,
     take: safeLimit,
   });

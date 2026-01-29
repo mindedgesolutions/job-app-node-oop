@@ -14,7 +14,7 @@ class JobController {
   // ---------------------------------
 
   public async readAll(req: Request, res: Response) {
-    let { page = 1, limit = 10, f = '' } = req.query;
+    let { page = 1, limit = 10, f = '', status = '', role = 1 } = req.query;
 
     page = Math.max(Number(page) || 1, 1);
     limit = Number(limit);
@@ -22,7 +22,10 @@ class JobController {
     const { data, meta } = await jobService.readAll({
       page,
       limit,
-      filter: f as string,
+      quickFilter: f as string,
+      status: status as string, // PENDING
+      jobRoleId: Number(role), // 1
+      sortBy: [{ id: 'desc' }, { createdAt: 'desc' }],
     });
 
     res.status(StatusCodes.OK).json({ data, meta });

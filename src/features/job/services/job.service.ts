@@ -38,19 +38,27 @@ class JobService {
   public async readAll({
     page,
     limit,
-    filter,
+    quickFilter,
+    status,
+    jobRoleId,
+    sortBy,
   }: {
     page: number;
     limit: number;
-    filter: string;
+    quickFilter: string;
+    status: string;
+    jobRoleId: number;
+    sortBy: any;
   }): Promise<{ data: Job[]; meta: PaginationDTO }> {
     const { data, meta } = await getPaginationAndFilters({
       page,
       limit,
-      filter,
-      filterFields: ['title'],
+      quickFilter,
+      quickFilterFields: ['title'],
+      filters: { status, jobRoleId },
       baseWhere: {},
       model: 'job',
+      sortBy,
     });
 
     return { data, meta };
