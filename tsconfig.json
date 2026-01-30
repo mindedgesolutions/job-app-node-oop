@@ -30,6 +30,7 @@
       "@/job/*": ["./src/features/job/*"],
       "@/candidate/*": ["./src/features/candidate-profile/*"],
       "@/company/*": ["./src/features/company/*"],
+      "@/apply/*": ["./src/features/apply/*"],
       "@/uploads/*": ["./uploads/*"]
     }
   },

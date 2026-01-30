@@ -11,6 +11,7 @@ import companyIndustryRoute from '@/features/company/routes/company-industry.rou
 import jobRoleRoute from '@/features/job/routes/job-role.route';
 import jobRoute from '@/features/job/routes/job.route';
 import jobSkillsRoute from '@/features/job/routes/job-skills.route';
+import applyRoute from '@/features/apply/routes/apply.route';
 
 function appRoutes(app: Application) {
   app.use('/api/v1/auth', authRoute);
@@ -25,5 +26,6 @@ function appRoutes(app: Application) {
   app.use('/api/v1/job-roles', jobRoleRoute);
   app.use('/api/v1/jobs', jobRoute);
   app.use('/api/v1/job-skills', jobSkillsRoute);
+  app.use('/api/v1/applies', applyRoute);
 }
 export default appRoutes;
