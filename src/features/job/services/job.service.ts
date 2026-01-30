@@ -8,6 +8,16 @@ import { Job } from 'generated/prisma';
 import { PaginationDTO } from '@/features/company/interfaces/company.interface';
 
 class JobService {
+  public async jobExistsByUserIdJobId(userId: number, jobId: number) {
+    const check = await prisma.job.findFirst({
+      where: { id: jobId, userId: userId },
+    });
+
+    return !!check;
+  }
+
+  // ---------------------------------
+
   public async create(requestBody: CreateJobDTO, currentUser: UserPayload) {
     const { jobRoleId, title, description, minSalary, maxSalary } = requestBody;
 

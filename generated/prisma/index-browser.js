@@ -234,6 +234,18 @@ exports.Prisma.JobScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SkillScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+};
+
+exports.Prisma.JobSkillScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  skillId: 'skillId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -286,7 +298,9 @@ exports.Prisma.ModelName = {
   Industry: 'Industry',
   CompanyIndustry: 'CompanyIndustry',
   JobRole: 'JobRole',
-  Job: 'Job'
+  Job: 'Job',
+  Skill: 'Skill',
+  JobSkill: 'JobSkill'
 };
 
 /**

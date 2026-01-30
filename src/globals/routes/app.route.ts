@@ -10,6 +10,7 @@ import { Application } from 'express';
 import companyIndustryRoute from '@/features/company/routes/company-industry.route';
 import jobRoleRoute from '@/features/job/routes/job-role.route';
 import jobRoute from '@/features/job/routes/job.route';
+import jobSkillsRoute from '@/features/job/routes/job-skills.route';
 
 function appRoutes(app: Application) {
   app.use('/api/v1/auth', authRoute);
@@ -23,5 +24,6 @@ function appRoutes(app: Application) {
   app.use('/api/v1/company-industries', companyIndustryRoute);
   app.use('/api/v1/job-roles', jobRoleRoute);
   app.use('/api/v1/jobs', jobRoute);
+  app.use('/api/v1/job-skills', jobSkillsRoute);
 }
 export default appRoutes;

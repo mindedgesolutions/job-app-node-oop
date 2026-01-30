@@ -157,6 +157,22 @@ model Job{
   totalViews          Int              @default(0)
   createdAt           DateTime         @default(now())
   updatedAt           DateTime?        @updatedAt
+  skills              JobSkill[]
+}
+
+model Skill{
+  id                  Int              @id @default(autoincrement())
+  name                String
+  slug                String           @unique
+  skills              JobSkill[]
+}
+
+model JobSkill{
+  id                  Int              @id @default(autoincrement())
+  job                 Job              @relation(fields: [jobId], references: [id])
+  jobId               Int
+  skill               Skill            @relation(fields: [skillId], references: [id])
+  skillId             Int
 }
 
 enum Role {
