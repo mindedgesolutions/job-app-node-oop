@@ -40,6 +40,7 @@ model CandidateProfile {
   candidateLanguages   CandidateLanguage[]
   candidateEducations  CandidateEducation[]
   candidateExperiences CandidateExperience[]
+  applications         Apply[]
 }
 
 model Language {
@@ -141,23 +142,24 @@ model JobRole {
 }
 
 model Job {
-  id          Int        @id @default(autoincrement())
-  company     Company    @relation(fields: [companyId], references: [id])
-  companyId   Int
-  user        User       @relation(fields: [userId], references: [id])
-  userId      Int
-  jobRole     JobRole    @relation(fields: [jobRoleId], references: [id])
-  jobRoleId   Int
-  title       String
-  description String
-  slug        String     @unique
-  status      JobStatus  @default(ACTIVE)
-  minSalary   Int
-  maxSalary   Int
-  totalViews  Int        @default(0)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime?  @updatedAt
-  skills      JobSkill[]
+  id           Int        @id @default(autoincrement())
+  company      Company    @relation(fields: [companyId], references: [id])
+  companyId    Int
+  user         User       @relation(fields: [userId], references: [id])
+  userId       Int
+  jobRole      JobRole    @relation(fields: [jobRoleId], references: [id])
+  jobRoleId    Int
+  title        String
+  description  String
+  slug         String     @unique
+  status       JobStatus  @default(ACTIVE)
+  minSalary    Int
+  maxSalary    Int
+  totalViews   Int        @default(0)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime?  @updatedAt
+  skills       JobSkill[]
+  applications Apply[]
 }
 
 model Skill {
@@ -173,6 +175,17 @@ model JobSkill {
   jobId   Int
   skill   Skill @relation(fields: [skillId], references: [id])
   skillId Int
+}
+
+model Apply {
+  job                Job              @relation(fields: [jobId], references: [id])
+  jobId              Int
+  candidate          CandidateProfile @relation(fields: [candidateProfileId], references: [id])
+  candidateProfileId Int
+  appliedAt          DateTime         @default(now())
+  status             AppStatus        @default(APPLIED)
+
+  @@id([jobId, candidateProfileId])
 }
 
 enum Role {
@@ -197,5 +210,13 @@ enum JobStatus {
   PENDING
   ACTIVE
   EXPIRED
+  REJECTED
+}
+
+enum AppStatus {
+  APPLIED
+  UNDER_REVIEW
+  INTERVIEW_SCHEDULED
+  OFFERED
   REJECTED
 }

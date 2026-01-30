@@ -246,6 +246,13 @@ exports.Prisma.JobSkillScalarFieldEnum = {
   skillId: 'skillId'
 };
 
+exports.Prisma.ApplyScalarFieldEnum = {
+  jobId: 'jobId',
+  candidateProfileId: 'candidateProfileId',
+  appliedAt: 'appliedAt',
+  status: 'status'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -285,6 +292,14 @@ exports.JobStatus = exports.$Enums.JobStatus = {
   REJECTED: 'REJECTED'
 };
 
+exports.AppStatus = exports.$Enums.AppStatus = {
+  APPLIED: 'APPLIED',
+  UNDER_REVIEW: 'UNDER_REVIEW',
+  INTERVIEW_SCHEDULED: 'INTERVIEW_SCHEDULED',
+  OFFERED: 'OFFERED',
+  REJECTED: 'REJECTED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   CandidateProfile: 'CandidateProfile',
@@ -300,7 +315,8 @@ exports.Prisma.ModelName = {
   JobRole: 'JobRole',
   Job: 'Job',
   Skill: 'Skill',
-  JobSkill: 'JobSkill'
+  JobSkill: 'JobSkill',
+  Apply: 'Apply'
 };
 
 /**
